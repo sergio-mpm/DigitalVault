@@ -19,8 +19,7 @@ public class ControleCadastro {
 		aceitarCadastro(ic);
 		ic.setVisible();
 	}
-	
-	
+		
 	public void voltarMenu(InterfaceCadastro ic) {
 		ic.getSair().addActionListener(new ActionListener() {
 			

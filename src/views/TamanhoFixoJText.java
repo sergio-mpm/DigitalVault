@@ -22,8 +22,6 @@ public class TamanhoFixoJText extends PlainDocument {
   
              if (str == null) 
                     return;  
-   
-             //Define a condi para aceitar qualquermero de caracteres
         if (tamMax <= 0)
         {
             super.insertString(offset, str, attr);
@@ -32,7 +30,6 @@ public class TamanhoFixoJText extends PlainDocument {
   
         int tam = (getLength() + str.length());
          
-        //Se o tamanho final for menor, chama insertString() aceitando a String
         if (tam <= tamMax)
             super.insertString(offset, str, attr);
         } 

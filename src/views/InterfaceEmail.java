@@ -3,10 +3,8 @@ package views;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.*;
 
-import models.LoginNameAuthenticator;
 import models.BDConnect;
 
 public class InterfaceEmail{
@@ -16,15 +14,14 @@ public class InterfaceEmail{
 	private JTextField tf;
 	private JLabel textLabel;
 	private JButton send;
-	private JButton reset;
-	
+	private JButton reset;	
 	
 	public InterfaceEmail(){
 		
 		BDConnect.Log(2001);
-		area = new JFrame("Autentication Email");
+		area = new JFrame("Autenticação de Email");
 		panel = new JPanel();
-		area.setSize(500,300);
+		area.setSize(500,150);
 		area.setLocationRelativeTo(null);
 		createLabelArea();
 		
@@ -32,7 +29,7 @@ public class InterfaceEmail{
             @Override
             public void windowClosing(WindowEvent e) {
             	BDConnect.Log(1002);
-                System.out.println("Sistema sendo fechado pelo usuario");
+                System.out.println("Sistema fechado pelo usuario");
                 System.exit(0);
             }
         });
@@ -40,8 +37,7 @@ public class InterfaceEmail{
 	
 	public void addTextField() {
 		textLabel = new JLabel("Email"); 
-		tf = new JTextField(10);
-		panel.add(textLabel);
+		tf = new JTextField(20);
 		panel.add(textLabel);
 		panel.add(tf);
 	}

@@ -16,27 +16,27 @@ public class Arquivo {
 		this.path = path;
 	}
 	
-	public String Get_NomeCodigo()
+	public String GetNomeCodigo()
 	{
 		return nome_codigo;
 	}
 	
-	public String Get_NomeSecreto()
+	public String GetNomeSecreto()
 	{
 		return nome_secreto;
 	}
 	
-	public String Get_Dono()
+	public String GetDono()
 	{
 		return dono;
 	}
 	
-	public String Get_Grupo()
+	public String GetGrupo()
 	{
 		return grupo;
 	}
 	
-	public String Get_Path()
+	public String GetPath()
 	{
 		return path;
 	}

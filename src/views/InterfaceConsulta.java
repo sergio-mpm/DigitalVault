@@ -171,10 +171,10 @@ public class InterfaceConsulta {
 		model.addColumn("Grupo"); 
 
 		for (Arquivo arquivo : arquivos) {			
-			listRow[0] = arquivo.Get_NomeCodigo();
-			listRow[1] = arquivo.Get_NomeSecreto();
-			listRow[2] = arquivo.Get_Dono();
-			listRow[3] = arquivo.Get_Grupo();
+			listRow[0] = arquivo.GetNomeCodigo();
+			listRow[1] = arquivo.GetNomeSecreto();
+			listRow[2] = arquivo.GetDono();
+			listRow[3] = arquivo.GetGrupo();
 			model.addRow(listRow);
 			listRow = new String[4];
 		}

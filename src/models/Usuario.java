@@ -140,13 +140,13 @@ public class Usuario {
 	{
 		if(Tem_Acesso(arquivo))
 		{
-			byte[] file_data = Decriptar_File(arquivo.Get_Path(), arquivo.Get_NomeCodigo());
+			byte[] file_data = Decriptar_File(arquivo.GetPath(), arquivo.GetNomeCodigo());
 			
 			try {
-				FileOutputStream fos = new FileOutputStream(arquivo.Get_Path() + "\\" + arquivo.Get_NomeSecreto());
+				FileOutputStream fos = new FileOutputStream(arquivo.GetPath() + "\\" + arquivo.GetNomeSecreto());
 				fos.write(file_data);
 				System.out.println("Arquivo Salvo com Sucesso!");
-				JOptionPane.showMessageDialog(null, "Arquivo " +  arquivo.Get_NomeSecreto() + " Salvo com Sucesso!", "Erro", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Arquivo " +  arquivo.GetNomeSecreto() + " Salvo com Sucesso!", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Falha na escrita do arquivo!");
@@ -190,14 +190,14 @@ public class Usuario {
 
 	public boolean Tem_Acesso(Arquivo arquivo)
 	{
-		if(arquivo.Get_Dono().equals(email) || arquivo.Get_Grupo().equals(grupo))
+		if(arquivo.GetDono().equals(email) || arquivo.GetGrupo().equals(grupo))
 		{
-			BDConnect.Log(8011, email, arquivo.Get_NomeCodigo());
+			BDConnect.Log(8011, email, arquivo.GetNomeCodigo());
 			return true;
 		}
-		BDConnect.Log(8012, email, arquivo.Get_NomeCodigo());
-		JOptionPane.showMessageDialog(null, "Usuario nao tem acesso ao Arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
-		System.out.println("Usuario nao tem acesso ao Arquivo");
+		BDConnect.Log(8012, email, arquivo.GetNomeCodigo());
+		JOptionPane.showMessageDialog(null, "Usuario não tem acesso ao Arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
+		System.out.println("Usuario não tem acesso ao Arquivo");
 		return false;
 	}
 	

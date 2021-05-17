@@ -164,7 +164,6 @@ public class InterfaceConsulta {
 		DefaultTableModel model = new DefaultTableModel(); 
 		table = new JTable(model); 
 		String[] listRow = new String[4];
-		// Create a couple of columns 
 		model.addColumn("Nome_Codigo"); 
 		model.addColumn("Nome_Secreto");
 		model.addColumn("Dono"); 

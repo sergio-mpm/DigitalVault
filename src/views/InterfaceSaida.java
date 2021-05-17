@@ -47,14 +47,12 @@ public class InterfaceSaida {
 	public void addCorpo1(JPanel corpo1) {
 		this.corpo1 = corpo1;
 		corpo1.setLayout(new BorderLayout());
-	    //corpo1.setPreferredSize(new Dimension(100,100));
 		menu.add(corpo1 , BorderLayout.CENTER);
 	}
 	
 	public void addCabecalho(JPanel cabecalho) {
 		this.cabecalho = cabecalho;
 		cabecalho.setLayout(new BorderLayout());
-		//cabecalho.setPreferredSize(new Dimension(100,100));
 		menu.add(cabecalho , BorderLayout.NORTH);
 	}
 	

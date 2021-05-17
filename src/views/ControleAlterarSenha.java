@@ -11,10 +11,10 @@ import models.Usuario;
 public class ControleAlterarSenha {
 
 	
-	public void trocaSenha(JPanel cabecalho , JPanel corpo1) {
+	public void trocaSenha(JPanel cabecalho , JPanel panel) {
 		InterfaceAlterarSenha ia = new InterfaceAlterarSenha();
 		ia.addCabecalho(cabecalho);
-		ia.addCorpo1(corpo1);
+		ia.addCorpo1(panel);
 		voltar(ia);
 		enviar(ia);
 		ia.setVisible();
@@ -40,10 +40,8 @@ public class ControleAlterarSenha {
 		ia.getSend().addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				LoginNameAuthenticator.getInstance().Validar_Troca_Senha(ia.getCampoCertificado().getText(), ia.getPassword().getText(), ia.getRepeatedPassword().getText());
-				
+			public void actionPerformed(ActionEvent arg0) {				
+				LoginNameAuthenticator.getInstance().Validar_Troca_Senha(ia.getCampoCertificado().getText(), ia.getPassword().getText(), ia.getRepeatedPassword().getText());				
 			}
 		});
 	}

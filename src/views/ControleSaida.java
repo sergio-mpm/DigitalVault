@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import model.BD;
-import model.Usuario;
+import models.BDConnect;
+import models.Usuario;
 
 public class ControleSaida {
 
@@ -25,8 +25,8 @@ public class ControleSaida {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BD.Log(9003, Usuario.getInstance().Get_Email());
-				BD.Log(1002);
+				BDConnect.Log(9003, Usuario.getInstance().Get_Email());
+				BDConnect.Log(1002);
 				is.getMenu().dispose();	
 				System.exit(0);
 			}
@@ -38,7 +38,7 @@ public class ControleSaida {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BD.Log(9004, Usuario.getInstance().Get_Email());
+				BDConnect.Log(9004, Usuario.getInstance().Get_Email());
 				is.getMenu().dispose();
 				ControleMenu cm = new ControleMenu();
 				cm.callMenu();

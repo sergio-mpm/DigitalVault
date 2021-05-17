@@ -1,33 +1,27 @@
 package views;
 
-import java.awt.color.CMMException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
 import models.LoginNameAuthenticator;
 import models.BDConnect;
 import models.Usuario;
 
 public class ControleCadastro {
-
 	
-	public void callCadastro(JPanel cabecalho) {
+	public void cadastrar(JPanel cabecalho) {
 		InterfaceCadastro ic = new InterfaceCadastro();
 		ic.addCabecalho(cabecalho);
 		ic.addCorpo1();
-		addtotalAcesso(ic);
-		addActVoltarMenu(ic);
-		addActCadastro(ic);
+		acessoTotal(ic);
+		voltarMenu(ic);
+		aceitarCadastro(ic);
 		ic.setVisible();
 	}
 	
 	
-	public void addActVoltarMenu(InterfaceCadastro ic) {
+	public void voltarMenu(InterfaceCadastro ic) {
 		ic.getSair().addActionListener(new ActionListener() {
 			
 			@Override
@@ -42,7 +36,7 @@ public class ControleCadastro {
 		
 	}
 	
-	public void addActCadastro(InterfaceCadastro ic) {
+	public void aceitarCadastro(InterfaceCadastro ic) {
 		ic.getConfirmarCadastro().addActionListener(new ActionListener() {
 			
 			@Override
@@ -66,7 +60,7 @@ public class ControleCadastro {
 		});
 	}
 	
-	public void addtotalAcesso(InterfaceCadastro ic) {
+	public void acessoTotal(InterfaceCadastro ic) {
 		// To do here
 		ic.setLabeltotalUsuario(ic.getLabeltotalUsuario().getText() + BDConnect.Total_Usuarios_Sistema());
 		

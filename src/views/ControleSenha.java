@@ -3,24 +3,22 @@ package views;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.Thread.State;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
-import model.Autentificador;
-import model.BD;
-import model.Functions;
-import model.Par_Digitos;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
+import models.Functions;
+import models.ParDigitos;
 
 public class ControleSenha {
 	
-	private ArrayList<Par_Digitos> atualValues;
+	private ArrayList<ParDigitos> atualValues;
 	
 	public void callInterfacePassword() {
-		InterfacePassword ip = new InterfacePassword(5);
-		atualValues = new ArrayList<Par_Digitos>();
+		InterfaceSenha ip = new InterfaceSenha(5);
+		atualValues = new ArrayList<ParDigitos>();
 		addValueAndActionToButton(ip);
 		AddActButtonSend(ip);
 		addActResetButton(ip);
@@ -37,9 +35,9 @@ public class ControleSenha {
 	}
 	
 	
-	public void addValueAndActionToButton(InterfacePassword ip) {
+	public void addValueAndActionToButton(InterfaceSenha ip) {
 		int n1 , n2 = 0;
-		ArrayList<Par_Digitos> digitos = Functions.Gerar_Set_Pares();
+		ArrayList<ParDigitos> digitos = Functions.Gerar_Set_Pares();
 		for (int i = 0 ; i < ip.getButtons().size() ; i++) {          
 			n1 = digitos.get(i).n1;
 			n2 = digitos.get(i).n2;
@@ -51,11 +49,11 @@ public class ControleSenha {
 		}		
 	}
 	
-	public void addActResetButton(InterfacePassword i) {
+	public void addActResetButton(InterfaceSenha i) {
 		i.getReset().addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 	        {	     
-				atualValues = new ArrayList<Par_Digitos>();
+				atualValues = new ArrayList<ParDigitos>();
 	        }
 			});
 	}
@@ -64,12 +62,12 @@ public class ControleSenha {
 		String text = button.getText().replace("|", "");
 		int n1 = Character.getNumericValue(text.charAt(0));
 		int n2 = Character.getNumericValue(text.charAt(1));
-		Par_Digitos par = new Par_Digitos(n1, n2);
+		ParDigitos par = new ParDigitos(n1, n2);
 		atualValues.add(par);
 		
 	}
 	
-	public void addActButtonNumbers(JButton button , InterfacePassword i) {
+	public void addActButtonNumbers(JButton button , InterfaceSenha i) {
 
 		button.addActionListener( new ActionListener() {
 		public void actionPerformed(ActionEvent e)
@@ -81,24 +79,24 @@ public class ControleSenha {
 		});
 	}	
 	
-	public void AddActButtonSend(InterfacePassword i) {
+	public void AddActButtonSend(InterfaceSenha i) {
 		i.getSend().addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int validarSenha = Autentificador.getInstance().Validar_Senha(atualValues);
+				int validarSenha = LoginNameAuthenticator.getInstance().Validar_Senha(atualValues);
 				
 				if ( validarSenha == -1)
 				{
-					atualValues = new ArrayList<Par_Digitos>();
+					atualValues = new ArrayList<ParDigitos>();
 				}
 				if ( validarSenha == -2) {
-					BD.Log(3002, Autentificador.getInstance().Get_LoginName());
+					BDConnect.Log(3002, LoginNameAuthenticator.getInstance().Get_LoginName());
 					i.getScreen().dispose();
-					ControllerEmail ce =  new ControllerEmail();
+					ControleEmail ce =  new ControleEmail();
 					ce.callInterfaceEmail();				
 				}
 				if (validarSenha == 1) {
-					BD.Log(3002, Autentificador.getInstance().Get_LoginName());
+					BDConnect.Log(3002, LoginNameAuthenticator.getInstance().Get_LoginName());
 					i.getScreen().dispose();
 					ControlePrivateKey cc = new ControlePrivateKey();
 					cc.callControllerCertificado();

@@ -7,15 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
-import model.Arquivo;
-import model.BD;
-import model.Usuario;
+import models.Arquivo;
+import models.BDConnect;
+import models.Usuario;
 
 public class ControleConsulta {
-
 	
 	public void callConsulta(JPanel cabecalho) {
 		InterfaceConsulta ic = new InterfaceConsulta();
@@ -24,9 +21,7 @@ public class ControleConsulta {
 		addTotalConsulta(ic);
 		ic.setVisible();
 		addActLista(ic);
-		addActSair(ic);
-		
-		
+		addActSair(ic);		
 	}
 	
 	
@@ -35,11 +30,11 @@ public class ControleConsulta {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				BD.Log(8003, Usuario.getInstance().Get_Email());
+				BDConnect.Log(8003, Usuario.getInstance().Get_Email());
 				ArrayList<Arquivo> arquivos = Usuario.getInstance().Parse_Index(ic.getCampoPasta().getText());
 				if(arquivos != null)
 				{
-					BD.Log(8009, Usuario.getInstance().Get_Email());
+					BDConnect.Log(8009, Usuario.getInstance().Get_Email());
 					ic.addArchivestoTable(arquivos);
 					addActClick(ic.getTable(), arquivos,ic);
 					ic.getMenuList().setVisible(true);
@@ -57,7 +52,7 @@ public class ControleConsulta {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BD.Log(8002, Usuario.getInstance().Get_Email());
+				BDConnect.Log(8002, Usuario.getInstance().Get_Email());
 				
 				ic.getMenu().dispose();
 				if (ic.getMenuList() != null )
@@ -77,7 +72,7 @@ public class ControleConsulta {
 			{
 				int position = table.getSelectedRow();
 				Arquivo a = arquivos.get(position);
-				BD.Log(8010, Usuario.getInstance().Get_Email(), a.Get_NomeCodigo());
+				BDConnect.Log(8010, Usuario.getInstance().Get_Email(), a.Get_NomeCodigo());
 				Usuario.getInstance().Decriptar_Arquivo(a);
 			}
 				

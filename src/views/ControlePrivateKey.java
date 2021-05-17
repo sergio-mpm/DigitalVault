@@ -1,24 +1,13 @@
 package views;
 
-import java.awt.Font;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.security.PrivateKey;
-import java.security.cert.X509Certificate;
-
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.filechooser.FileSystemView;
 
-import model.Autentificador;
-import model.BD;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
 
 public class ControlePrivateKey {
 	
@@ -74,19 +63,17 @@ public class ControlePrivateKey {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// Validar dados
-				int retorno = Autentificador.getInstance().Validar_ChavePrivada(pathPrivateKeySelected, ic.getSenhaSecreta().getText());
+				int retorno = LoginNameAuthenticator.getInstance().Validar_ChavePrivada(pathPrivateKeySelected, ic.getSenhaSecreta().getText());
 				
 				if (retorno == -2) {
-					BD.Log(4002, Autentificador.getInstance().Get_LoginName());
+					BDConnect.Log(4002, LoginNameAuthenticator.getInstance().Get_LoginName());
 					ic.getScreen().dispose();
-					ControllerEmail ce = new ControllerEmail();
+					ControleEmail ce = new ControleEmail();
 					ce.callInterfaceEmail();
 				}			
-				// Verificar se eh adm ou usuario 
 				if (retorno == 1) {
-					Autentificador.getInstance().Efetuar_Login();				
-					BD.Log(4002, Autentificador.getInstance().Get_LoginName());
+					LoginNameAuthenticator.getInstance().Efetuar_Login();				
+					BDConnect.Log(4002, LoginNameAuthenticator.getInstance().Get_LoginName());
 					ic.getScreen().dispose();
 					ControleMenu cm = new ControleMenu();
 					cm.callMenu();

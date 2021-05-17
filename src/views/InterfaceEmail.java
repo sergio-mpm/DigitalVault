@@ -1,12 +1,6 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Event;
-import java.awt.Frame;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -45,7 +39,7 @@ public class InterfaceEmail{
 	}
 	
 	public void addTextField() {
-		textLabel = new JLabel("Email");
+		textLabel = new JLabel("Email"); 
 		tf = new JTextField(10);
 		panel.add(textLabel);
 		panel.add(textLabel);

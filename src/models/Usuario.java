@@ -1,20 +1,15 @@
 package models;
 
-
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.Signature;
-import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.sound.midi.Synthesizer;
 import javax.swing.JOptionPane;
 
 public class Usuario {

@@ -15,8 +15,8 @@ public class MainInterface {
 		BDConnect.Estabelecer_Conexao();
 		BDConnect.Log(1001);
 		
-		ControleEmail e = new ControleEmail();
-		e.callInterfaceEmail();
+		ControleEmail ce = new ControleEmail();
+		ce.callInterfaceEmail();
 		
 	}
 

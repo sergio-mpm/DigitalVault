@@ -56,9 +56,6 @@ public class Functions {
 		int i = 0;
 		for (char c : senha_array) {
 			int value = Character.getNumericValue(c);
-			
-			
-			//numeros consecutivos duplicados
 			if(last_value == value)
 			{
 				System.out.println("Senha fora do padrão");
@@ -69,7 +66,6 @@ public class Functions {
 				next_value = -2;
 			else
 				next_value = Character.getNumericValue(senha_array[i + 1]);
-			//sequencia de numeros de 3
 			if(last_value + 1 == value && value + 1 == next_value)
 			{
 				System.out.println("Senha fora do padrão");

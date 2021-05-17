@@ -49,7 +49,6 @@ public class InterfaceCadastro {
 		menu.add(corpo2 , BorderLayout.SOUTH);
 		corpo2.setLayout(new BoxLayout(corpo2, BoxLayout.Y_AXIS));
 		panelbuttons = new JPanel();
-	    //corpo2.setPreferredSize(new Dimension(250,250));
 	    setTexts();
 	    setButtons();
 	
@@ -67,7 +66,6 @@ public class InterfaceCadastro {
 	public void addCabecalho(JPanel cabecalho) {
 		this.cabecalho = cabecalho;
 		cabecalho.setLayout(new BorderLayout());
-		//cabecalho.setPreferredSize(new Dimension(100,100));
 		menu.add(cabecalho , BorderLayout.NORTH);
 	}
 	

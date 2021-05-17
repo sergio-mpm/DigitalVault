@@ -24,13 +24,6 @@ public class BDConnect {
 		try {
 			
 			connection = DriverManager.getConnection(url, user, password);
-		    /*Statement st = connection.createStatement();
-		    ResultSet rs = st.executeQuery(query);
-		
-		    if (rs.next()) {
-		        
-		        System.out.println(rs.getString(1));
-		    }*/
 			
 		} catch (Exception e) {
 			e.printStackTrace();

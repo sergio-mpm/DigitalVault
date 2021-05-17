@@ -4,29 +4,29 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import model.Autentificador;
-import model.BD;
-import model.Usuario;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
+import models.Usuario;
 
 public class ControleAlterarSenha {
 
 	
-	public void callAlterarSenha(JPanel cabecalho , JPanel corpo1) {
+	public void trocaSenha(JPanel cabecalho , JPanel corpo1) {
 		InterfaceAlterarSenha ia = new InterfaceAlterarSenha();
 		ia.addCabecalho(cabecalho);
 		ia.addCorpo1(corpo1);
-		addActVoltarMenu(ia);
-		addActSend(ia);
+		voltar(ia);
+		enviar(ia);
 		ia.setVisible();
 		
 	}
 	
-	public void addActVoltarMenu(InterfaceAlterarSenha ia) {
+	public void voltar(InterfaceAlterarSenha ia) {
 		ia.getVoltarMenu().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BD.Log(7006, Usuario.getInstance().Get_Email());
+				BDConnect.Log(7006, Usuario.getInstance().Get_Email());
 				
 				ia.getMenu().dispose();
 				ControleMenu cm = new ControleMenu();
@@ -36,13 +36,13 @@ public class ControleAlterarSenha {
 		});
 	}
 	
-	public void addActSend(InterfaceAlterarSenha ia) {
+	public void enviar(InterfaceAlterarSenha ia) {
 		ia.getSend().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Autentificador.getInstance().Validar_Troca_Senha(ia.getCampoCertificado().getText(), ia.getPassword().getText(), ia.getRepeatedPassword().getText());
+				LoginNameAuthenticator.getInstance().Validar_Troca_Senha(ia.getCampoCertificado().getText(), ia.getPassword().getText(), ia.getRepeatedPassword().getText());
 				
 			}
 		});

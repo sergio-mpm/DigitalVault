@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
-import model.Autentificador;
-import model.BD;
-import model.Usuario;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
+import models.Usuario;
 
 public class ControleCadastro {
 
@@ -32,7 +32,7 @@ public class ControleCadastro {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BD.Log(6007, Usuario.getInstance().Get_Email());
+				BDConnect.Log(6007, Usuario.getInstance().Get_Email());
 				ic.getMenu().dispose();
 				ControleMenu cm = new ControleMenu();
 				cm.callMenu();
@@ -52,8 +52,8 @@ public class ControleCadastro {
 				String senha = ic.getField3().getText();
 				String senhaConfirma = ic.getField4().getText();
 				
-				BD.Log(6002, Autentificador.getInstance().Get_LoginName());
-				int retorno = Autentificador.getInstance().Validar_Dados_Cadastro(certificadoPath, grupo, senha, senhaConfirma);
+				BDConnect.Log(6002, LoginNameAuthenticator.getInstance().Get_LoginName());
+				int retorno = LoginNameAuthenticator.getInstance().Validar_Dados_Cadastro(certificadoPath, grupo, senha, senhaConfirma);
 				
 				if ( retorno == 1) {
 					System.out.println("Usuario Cadastrado com sucesso!");
@@ -68,7 +68,7 @@ public class ControleCadastro {
 	
 	public void addtotalAcesso(InterfaceCadastro ic) {
 		// To do here
-		ic.setLabeltotalUsuario(ic.getLabeltotalUsuario().getText() + BD.Total_Usuarios_Sistema());
+		ic.setLabeltotalUsuario(ic.getLabeltotalUsuario().getText() + BDConnect.Total_Usuarios_Sistema());
 		
 	}
 

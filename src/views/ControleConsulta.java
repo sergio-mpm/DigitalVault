@@ -72,7 +72,7 @@ public class ControleConsulta {
 			{
 				int position = table.getSelectedRow();
 				Arquivo a = arquivos.get(position);
-				BDConnect.Log(8010, Usuario.getInstance().Get_Email(), a.Get_NomeCodigo());
+				BDConnect.Log(8010, Usuario.getInstance().Get_Email(), a.GetNomeCodigo());
 				Usuario.getInstance().Decriptar_Arquivo(a);
 			}
 				
@@ -80,7 +80,6 @@ public class ControleConsulta {
 	}
 	
 	public void addTotalConsulta(InterfaceConsulta ic) {
-		// to do here
 		ic.setTotalConsultas(Integer.toString(Usuario.getInstance().Get_Total_Consultas()));	
 	}
 	

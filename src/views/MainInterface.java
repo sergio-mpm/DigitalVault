@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import model.Autentificador;
-import model.BD;
-import model.Par_Digitos;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
+import models.ParDigitos;
 
 public class MainInterface {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		BD.Estabelecer_Conexao();
-		BD.Log(1001);
+		BDConnect.Estabelecer_Conexao();
+		BDConnect.Log(1001);
 		/*
 		ArrayList<Par_Digitos> par_digitos = new ArrayList<Par_Digitos>();
 		par_digitos.add(new Par_Digitos(3, 1));
@@ -46,7 +46,7 @@ public class MainInterface {
 		
 		//ce.callMenu();
 		
-		ControllerEmail e = new ControllerEmail();
+		ControleEmail e = new ControleEmail();
 		e.callInterfaceEmail();
 		
 		

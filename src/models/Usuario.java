@@ -56,9 +56,9 @@ public class Usuario {
 
 	public byte[] Decriptar_File(String path, String name)
 	{
-		byte[] index_crypt = Autentificador.getInstance().Ler_File_Bin(path + "\\" + name + ".enc");
-		byte[] envelope_digital = Autentificador.getInstance().Ler_File_Bin(path + "\\" + name + ".env");
-		byte[] assinatura_digital = Autentificador.getInstance().Ler_File_Bin(path + "\\" + name + ".asd");
+		byte[] index_crypt = LoginNameAuthenticator.getInstance().Ler_File_Bin(path + "\\" + name + ".enc");
+		byte[] envelope_digital = LoginNameAuthenticator.getInstance().Ler_File_Bin(path + "\\" + name + ".env");
+		byte[] assinatura_digital = LoginNameAuthenticator.getInstance().Ler_File_Bin(path + "\\" + name + ".asd");
 		
 		if(envelope_digital == null || assinatura_digital == null)
 		{
@@ -66,7 +66,6 @@ public class Usuario {
 			return null;
 		}
 		
-		//decripta o envelope digital para recuperar a semente
 		try {
 			Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
@@ -82,28 +81,27 @@ public class Usuario {
 			SecretKey secretKey = keyGenerator.generateKey();
 
 			cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
-			//Decriptando o index_data
 			cipher.init(Cipher.DECRYPT_MODE, secretKey);
 			byte[] index_data_bytes = cipher.doFinal(index_crypt);
 			
 			if(name == "index")
-				BD.Log(8005, email);
+				BDConnect.Log(8005, email);
 			else
 			{
-				BD.Log(8013, email, name);
+				BDConnect.Log(8013, email, name);
 			}
 		
-			Signature sig = Autentificador.getInstance().Gerar_AssinaturaDigital("MD5withRSA");
+			Signature sig = LoginNameAuthenticator.getInstance().Gerar_AssinaturaDigital("MD5withRSA");
 			sig.initVerify(publicKey);
 			sig.update(index_data_bytes);
 
 			if(sig.verify(assinatura_digital))
 			{
 				if(name == "index")
-					BD.Log(8006, email);
+					BDConnect.Log(8006, email);
 				else
 				{
-					BD.Log(8014, email, name);
+					BDConnect.Log(8014, email, name);
 				}
 
 				return index_data_bytes;
@@ -111,10 +109,10 @@ public class Usuario {
 			else 
 			{
 				if(name == "index")
-					BD.Log(8008, email);
+					BDConnect.Log(8008, email);
 				else
 				{
-					BD.Log(8016, email, name);
+					BDConnect.Log(8016, email, name);
 				}
 				
 				JOptionPane.showMessageDialog(null, "Integridade e Autenticidade Corrompida!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -125,12 +123,12 @@ public class Usuario {
 			if(name == "index")
 			{
 				JOptionPane.showMessageDialog(null, "Falha na decriptação do arquivo de índice", "Erro", JOptionPane.ERROR_MESSAGE);
-				BD.Log(8007, email);
+				BDConnect.Log(8007, email);
 			}
 			else
 			{
 				JOptionPane.showMessageDialog(null, "Falha na decriptação do arquivo " + name, "Erro", JOptionPane.ERROR_MESSAGE);
-				BD.Log(8015, email, name);
+				BDConnect.Log(8015, email, name);
 			}
 			e.printStackTrace();
 		}
@@ -159,10 +157,10 @@ public class Usuario {
 
 	public ArrayList<Arquivo> Parse_Index(String path)
 	{
-		byte[] index_crypt = Autentificador.getInstance().Ler_File_Bin(path + "\\index.enc");
+		byte[] index_crypt = LoginNameAuthenticator.getInstance().Ler_File_Bin(path + "\\index.enc");
 		if(index_crypt == null)
 		{
-			BD.Log(8004, email);
+			BDConnect.Log(8004, email);
 			JOptionPane.showMessageDialog(null, "Caminho invalido", "Erro", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
@@ -172,7 +170,7 @@ public class Usuario {
 			return null;
 		}
 		
-		String index_data = Autentificador.getInstance().Byte_to_String(index_data_bytes);
+		String index_data = LoginNameAuthenticator.getInstance().Byte_to_String(index_data_bytes);
 		
 		ArrayList<Arquivo> sistema_files = new ArrayList<Arquivo>();
 		String[] arquivos = index_data.split("\n");
@@ -194,10 +192,10 @@ public class Usuario {
 	{
 		if(arquivo.Get_Dono().equals(email) || arquivo.Get_Grupo().equals(grupo))
 		{
-			BD.Log(8011, email, arquivo.Get_NomeCodigo());
+			BDConnect.Log(8011, email, arquivo.Get_NomeCodigo());
 			return true;
 		}
-		BD.Log(8012, email, arquivo.Get_NomeCodigo());
+		BDConnect.Log(8012, email, arquivo.Get_NomeCodigo());
 		JOptionPane.showMessageDialog(null, "Usuario nao tem acesso ao Arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
 		System.out.println("Usuario nao tem acesso ao Arquivo");
 		return false;
@@ -220,11 +218,11 @@ public class Usuario {
 	
 	public int Get_Acessos()
 	{
-		return BD.Numero_Acessos_Usuario(email);
+		return BDConnect.Numero_Acessos_Usuario(email);
 	}
 	
 	public int Get_Total_Consultas()
 	{
-		return BD.Numero_Consultas_Usuario(email);
+		return BDConnect.Numero_Consultas_Usuario(email);
 	}
 }

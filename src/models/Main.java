@@ -10,24 +10,24 @@ import javax.swing.JOptionPane;
 public class Main {
 	
 	public static void main(String[] args) {
-		ArrayList<Par_Digitos> par_digitos = new ArrayList<Par_Digitos>();
-		BD.Estabelecer_Conexao();		
+		ArrayList<ParDigitos> par_digitos = new ArrayList<ParDigitos>();
+		BDConnect.Estabelecer_Conexao();		
 
-		par_digitos.add(new Par_Digitos(3, 1));
-		par_digitos.add(new Par_Digitos(9, 4));
-		par_digitos.add(new Par_Digitos(1, 6));
-		par_digitos.add(new Par_Digitos(6, 8));
-		par_digitos.add(new Par_Digitos(9, 8));
-		par_digitos.add(new Par_Digitos(4, 8));
+		par_digitos.add(new ParDigitos(3, 1));
+		par_digitos.add(new ParDigitos(9, 4));
+		par_digitos.add(new ParDigitos(1, 6));
+		par_digitos.add(new ParDigitos(6, 8));
+		par_digitos.add(new ParDigitos(9, 8));
+		par_digitos.add(new ParDigitos(4, 8));
 
 		String path = "C:\\Users\\Maucio\\Desktop\\Puc\\Segys\\admin-x509.crt";
 		
 		path = "C:\\Users\\Maucio\\Desktop\\Puc\\Segurpem";
 		
-		Autentificador.getInstance().Iniciar_Validacao();
-		Autentificador.getInstance().Validar_Email("user01@inf1416.puc-rio.br");
-		Autentificador.getInstance().Validar_Senha(par_digitos);
-		Autentificador.getInstance().Validar_ChavePrivada(path, "user01");
+		LoginNameAuthenticator.getInstance().Iniciar_Validacao();
+		LoginNameAuthenticator.getInstance().Validar_Email("user01@inf1416.puc-rio.br");
+		LoginNameAuthenticator.getInstance().Validar_Senha(par_digitos);
+		LoginNameAuthenticator.getInstance().Validar_ChavePrivada(path, "user01");
 		
 		Usuario user = Usuario.getInstance();
 		if(user != null)

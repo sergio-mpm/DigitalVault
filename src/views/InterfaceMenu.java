@@ -18,8 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.Autentificador;
-import model.BD;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
 
 public class InterfaceMenu {
 
@@ -95,7 +95,7 @@ public class InterfaceMenu {
 
 	
 	public InterfaceMenu(String grupo) {
-		BD.Log(5001, Autentificador.getInstance().Get_LoginName());		
+		BDConnect.Log(5001, LoginNameAuthenticator.getInstance().Get_LoginName());		
 		menu = new JFrame("Menu");
 		menu.setLayout(new BorderLayout());
 		menu.setSize(600,600);
@@ -115,7 +115,7 @@ public class InterfaceMenu {
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	BD.Log(1002);
+            	BDConnect.Log(1002);
                 System.out.println("Sistema sendo fechado pelo usuario");
                 System.exit(0);
             }

@@ -97,32 +97,32 @@ public class LoginNameAuthenticator {
 			return -1;
 		}
 
-		id = BD.Get_Id_by_Email(email);
+		id = BDConnect.Get_Id_by_Email(email);
 		
 		if(id <= 0)
 		{
-			BD.Log(2005, email);
+			BDConnect.Log(2005, email);
 			JOptionPane.showMessageDialog(null, "Email Invalido", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Email Invalido");
 			return -1;
 		}
 		
-		if(BD.Usuario_Bloqueado(id))
+		if(BDConnect.Usuario_Bloqueado(id))
 		{
-			BD.Log(2004, email);
+			BDConnect.Log(2004, email);
 			JOptionPane.showMessageDialog(null, "Usuario Bloqueado", "Erro", JOptionPane.WARNING_MESSAGE);
 			System.out.println("Usuario Bloqueado");
 			return -1;
 		}
 
-		BD.Log(2003, email);
+		BDConnect.Log(2003, email);
 		login_name = email;
 		System.out.println("Email Validado");
 		current_state = State.SENHA;
 		return 1;
 	}
 
-	public int Validar_Senha(ArrayList<Par_Digitos> par_digitos)
+	public int Validar_Senha(ArrayList<ParDigitos> par_digitos)
 	{
 		if(current_state != State.SENHA)
 		{
@@ -136,12 +136,12 @@ public class LoginNameAuthenticator {
 			return Senha_Invalida();
 		}
 		
-		String senha = BD.Get_Senha_by_Id(id);
-		String SALT = BD.Get_Salt_by_Id(id);
+		String senha = BDConnect.Get_Senha_by_Id(id);
+		String SALT = BDConnect.Get_Salt_by_Id(id);
 		
 		if(Testa_Senhas(par_digitos, SALT, senha))
 		{
-			BD.Log(3003, login_name);
+			BDConnect.Log(3003, login_name);
 			System.out.println("Senha Validada");
 			current_state = State.CHAVE_PRIVADA;
 			return 1;
@@ -156,16 +156,16 @@ public class LoginNameAuthenticator {
 		System.out.println("Acesso Negado : Senha Invalida!");
 		erros_senha -= 1;
 		if(erros_senha == 2)
-			BD.Log(3004, login_name);
+			BDConnect.Log(3004, login_name);
 		if(erros_senha == 1)
-			BD.Log(3005, login_name);
+			BDConnect.Log(3005, login_name);
 		if(erros_senha <= 0)
 		{
-			BD.Log(3006, login_name);
-			BD.Log(3007, login_name);
+			BDConnect.Log(3006, login_name);
+			BDConnect.Log(3007, login_name);
 			JOptionPane.showMessageDialog(null, "Usuario Bloqueado : Numero de tentativas maximo execidida", "Erro", JOptionPane.ERROR_MESSAGE);
 			System.out.println("Usuario Bloqueado : Numero de tentativas maximo execidida");
-			BD.Bloquear_Usuario(id);
+			BDConnect.Bloquear_Usuario(id);
 			current_state = State.BLOQUEADO;
 			return -2;
 		}
@@ -216,11 +216,11 @@ public class LoginNameAuthenticator {
 				 
 		if(!Validar_AssinaturaDigital(assinatura, ceritificadoDigital.getPublicKey(), data, signature))
 		{
-			BD.Log(4006, login_name);
+			BDConnect.Log(4006, login_name);
 			return ChavePrivada_Invalida();
 		}
 		
-		BD.Log(4003, login_name);
+		BDConnect.Log(4003, login_name);
 		System.out.println("Chave Privada Validada");
 		Efetuar_Login();
 		return 1;
@@ -233,10 +233,10 @@ public class LoginNameAuthenticator {
 		erros_chave_privada -= 1;
 		if(erros_chave_privada <= 0)
 		{
-			BD.Log(4007, login_name);
+			BDConnect.Log(4007, login_name);
 			JOptionPane.showMessageDialog(null, "Usuario Bloqueado : Numero de tentativas maximo execidida", "Erro", JOptionPane.ERROR_MESSAGE);
 			System.out.println("Usuario Bloqueado : Numero de tentativas maximo execidida");
-			BD.Bloquear_Usuario(id);
+			BDConnect.Bloquear_Usuario(id);
 			current_state = State.BLOQUEADO;
 			return -2;
 		}
@@ -250,10 +250,10 @@ public class LoginNameAuthenticator {
 		erros_chave_privada -= 1;
 		if(erros_chave_privada <= 0)
 		{
-			BD.Log(4007, login_name);
+			BDConnect.Log(4007, login_name);
 			JOptionPane.showMessageDialog(null, "Usuario Bloqueado : Numero de tentativas maximo execidida", "Erro", JOptionPane.ERROR_MESSAGE);
 			System.out.println("Usuario Bloqueado : Numero de tentativas maximo execidida");
-			BD.Bloquear_Usuario(id);
+			BDConnect.Bloquear_Usuario(id);
 			current_state = State.BLOQUEADO;
 			return -2;
 		}
@@ -296,7 +296,7 @@ public class LoginNameAuthenticator {
 		{
 			JOptionPane.showMessageDialog(null, "Certificado Invalido", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Certificado Invalido");
-			BD.Log(6004, login_name);
+			BDConnect.Log(6004, login_name);
 			return -1;
 		}
 		
@@ -307,7 +307,7 @@ public class LoginNameAuthenticator {
 		{
 			JOptionPane.showMessageDialog(null, "Senha não bate com a confirmação", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Senha não bate com a confirmação");
-			BD.Log(6003, login_name);
+			BDConnect.Log(6003, login_name);
 			return -1;
 		}
 		
@@ -315,7 +315,7 @@ public class LoginNameAuthenticator {
 		{
 			JOptionPane.showMessageDialog(null, "Padrão invalido de senha", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Padrão invalido de senha");
-			BD.Log(6003, login_name);
+			BDConnect.Log(6003, login_name);
 			return -1;
 		}
 		
@@ -323,7 +323,7 @@ public class LoginNameAuthenticator {
 		{
 			JOptionPane.showMessageDialog(null, "Formato invalido de email", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Formato invalido de email");
-			BD.Log(6006, login_name);
+			BDConnect.Log(6006, login_name);
 			return -1;
 		}
 		
@@ -331,7 +331,7 @@ public class LoginNameAuthenticator {
 		{
 			JOptionPane.showMessageDialog(null, "Grupo não existe", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Grupo não existe");
-			BD.Log(6006, login_name);
+			BDConnect.Log(6006, login_name);
 			return -1;
 		}
 		
@@ -341,17 +341,17 @@ public class LoginNameAuthenticator {
 		if(n < 1)
 			return -1;
 		
-		if(BD.Usuario_Existe(email))
+		if(BDConnect.Usuario_Existe(email))
 		{
 			JOptionPane.showMessageDialog(null, "Usuario ja existe", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Usuario ja existe");
-			BD.Log(6006, login_name);
+			BDConnect.Log(6006, login_name);
 			return -1;
 		}
 		
-		BD.Cadastrar_Usuario(email, nome, Recuperar_PEM_Format_Ceritficado(Ler_File(certificadoPath)), SALT, grupo, Cryptografar_Senha(senha, SALT));
+		BDConnect.Cadastrar_Usuario(email, nome, Recuperar_PEM_Format_Ceritficado(Ler_File(certificadoPath)), SALT, grupo, Cryptografar_Senha(senha, SALT));
 		JOptionPane.showMessageDialog(null, "Usuario cadastrado com Sucesso", "Erro", JOptionPane.INFORMATION_MESSAGE);
-		BD.Log(6005, login_name);
+		BDConnect.Log(6005, login_name);
 		
 		return 1;
 	}
@@ -403,7 +403,7 @@ public class LoginNameAuthenticator {
 			{
 				JOptionPane.showMessageDialog(null, "Certificado Invalido", "Erro", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Certificado Invalido");
-				BD.Log(7003, login_name);
+				BDConnect.Log(7003, login_name);
 				valido = false;
 			}
 			else
@@ -420,7 +420,7 @@ public class LoginNameAuthenticator {
 			{
 				JOptionPane.showMessageDialog(null, "Senha não bate com a confirmação", "Erro", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Senha não bate com a confirmção");
-				BD.Log(7002, login_name);
+				BDConnect.Log(7002, login_name);
 				valido = false;
 			}
 			
@@ -428,7 +428,7 @@ public class LoginNameAuthenticator {
 			{
 				JOptionPane.showMessageDialog(null, "Padrão invalido de senha", "Erro", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Padrão invalido de senha");
-				BD.Log(7002, login_name);
+				BDConnect.Log(7002, login_name);
 				valido = false;
 			}
 			alterarSenha = true;
@@ -441,7 +441,7 @@ public class LoginNameAuthenticator {
 		{
 			JOptionPane.showMessageDialog(null, "Senha não bate com a confirmação", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Senha não bate com a confirmação");
-			BD.Log(7002, login_name);
+			BDConnect.Log(7002, login_name);
 			valido = false;
 		}
 		
@@ -449,21 +449,21 @@ public class LoginNameAuthenticator {
 		{
 			if(alterarSenha)
 			{
-				BD.Atualizar_Senha_Usuario(id, Cryptografar_Senha(Integer.parseInt(senha_str), SALT), SALT);
+				BDConnect.Atualizar_Senha_Usuario(id, Cryptografar_Senha(Integer.parseInt(senha_str), SALT), SALT);
 				JOptionPane.showMessageDialog(null, "Senha alterado com sucesso!", "Info", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Senha alterado com sucesso!");
 			}
 			if(alterarCertificado)
 			{
-				BD.Atualizar_Certificado_Usuario(id, Recuperar_PEM_Format_Ceritficado(Ler_File(certificadoPath)));
+				BDConnect.Atualizar_Certificado_Usuario(id, Recuperar_PEM_Format_Ceritficado(Ler_File(certificadoPath)));
 				JOptionPane.showMessageDialog(null, "Certificado alterado com sucesso!", "Info", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Certificado alterado com sucesso!");
 			}
-			BD.Log(7004, login_name);
+			BDConnect.Log(7004, login_name);
 		}
 		else
 		{
-			BD.Log(7005, login_name);
+			BDConnect.Log(7005, login_name);
 			return -1;
 		}
 		
@@ -541,7 +541,7 @@ public class LoginNameAuthenticator {
 	{
 		Certificate certificadoDigital = null;
 		
-		String certificado_Pem = BD.Get_Certificado_Digital_Usuario(id);
+		String certificado_Pem = BDConnect.Get_Certificado_Digital_Usuario(id);
 		byte[] certificado_pem_format = String_to_Byte(Recuperar_PEM_Format_Ceritficado(certificado_Pem));
 		
 		try {
@@ -563,7 +563,7 @@ public class LoginNameAuthenticator {
 		byte[] privateKey_crypto = Ler_File_Bin(path);
 		if(privateKey_crypto == null)
 		{
-			BD.Log(4004, login_name);
+			BDConnect.Log(4004, login_name);
 			System.out.println("Caminho Invalido");
 		}
 		
@@ -588,10 +588,10 @@ public class LoginNameAuthenticator {
 		    privateKey = keyFactory.generatePrivate(private_key_spec);
 		    
 		} catch (BadPaddingException e) {
-			BD.Log(4005, login_name);
+			BDConnect.Log(4005, login_name);
 		}
 		catch (Exception e) {
-			BD.Log(4004, login_name);
+			BDConnect.Log(4004, login_name);
 			e.printStackTrace();
 		}
 
@@ -724,7 +724,7 @@ public class LoginNameAuthenticator {
 		return new String(bytes);
 	}
     
-    private boolean Testa_Senhas(ArrayList<Par_Digitos> par_digitos, String SALT, String senha_hash)
+    private boolean Testa_Senhas(ArrayList<ParDigitos> par_digitos, String SALT, String senha_hash)
     {
     	String bitMask = null;
     	
@@ -759,7 +759,7 @@ public class LoginNameAuthenticator {
 		Usuario user = new Usuario(id, Recuperar_Nome_Certificado(ceritificadoDigital), 
 								   Recuperar_Email_Certificado(ceritificadoDigital), 
 								   ceritificadoDigital, 
-								   BD.Get_Grupo_Usuario(id), 
+								   BDConnect.Get_Grupo_Usuario(id), 
 								   privateKey);
 		Usuario.SetInstance(user);
 	}

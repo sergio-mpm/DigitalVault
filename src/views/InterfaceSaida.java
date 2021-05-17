@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.BD;
-import model.Usuario;
+import models.BDConnect;
+import models.Usuario;
 
 public class InterfaceSaida {
 
@@ -22,7 +22,7 @@ public class InterfaceSaida {
 	private JLabel saida , msgSaida;
 	
 	public InterfaceSaida() {
-		BD.Log(9001, Usuario.getInstance().Get_Email());
+		BDConnect.Log(9001, Usuario.getInstance().Get_Email());
 		
 		menu = new JFrame("Tela de saída");
 		menu.setSize(600,600);
@@ -36,7 +36,7 @@ public class InterfaceSaida {
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	BD.Log(1002);
+            	BDConnect.Log(1002);
                 System.out.println("Sistema sendo fechado pelo usuario");
                 System.exit(0);
             }

@@ -15,8 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.Autentificador;
-import model.BD;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
 
 public class InterfaceSenha {
 
@@ -73,8 +73,8 @@ public class InterfaceSenha {
 	}
 
 
-	public InterfacePassword(int numberButtons) {
-		BD.Log(3001, Autentificador.getInstance().Get_LoginName());
+	public InterfaceSenha(int numberButtons) {
+		BDConnect.Log(3001, LoginNameAuthenticator.getInstance().Get_LoginName());
 		
 		menu = new JFrame("Autentication Password");
 		panel = new JPanel();
@@ -91,7 +91,7 @@ public class InterfaceSenha {
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	BD.Log(1002);
+            	BDConnect.Log(1002);
                 System.out.println("Sistema sendo fechado pelo usuario");
                 System.exit(0);
             }

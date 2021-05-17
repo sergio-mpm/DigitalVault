@@ -19,8 +19,8 @@ import javax.swing.text.Position;
 import javax.swing.text.Segment;
 import javax.swing.undo.UndoableEdit;
 
-import model.Autentificador;
-import model.BD;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
 
 public class InterfacePrivateKey {
 
@@ -45,7 +45,7 @@ public class InterfacePrivateKey {
 
 
 	public InterfacePrivateKey() {
-		BD.Log(4001, Autentificador.getInstance().Get_LoginName());
+		BDConnect.Log(4001, LoginNameAuthenticator.getInstance().Get_LoginName());
 	
 		menu = new JFrame("Autentication Private Key");		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -60,7 +60,7 @@ public class InterfacePrivateKey {
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	BD.Log(1002);
+            	BDConnect.Log(1002);
                 System.out.println("Sistema sendo fechado pelo usuario");
                 System.exit(0);
             }

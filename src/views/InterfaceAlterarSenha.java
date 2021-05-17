@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import model.BD;
-import model.Usuario;
+import models.BDConnect;
+import models.Usuario;
 
 public class InterfaceAlterarSenha {
 
@@ -60,7 +60,7 @@ public class InterfaceAlterarSenha {
 	
 	
 	public InterfaceAlterarSenha() {
-		BD.Log(7001, Usuario.getInstance().Get_Email());
+		BDConnect.Log(7001, Usuario.getInstance().Get_Email());
 		
 		menu = new JFrame("Alterar Senha");
 		menu.setSize(600,600);
@@ -75,7 +75,7 @@ public class InterfaceAlterarSenha {
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	BD.Log(1002);
+            	BDConnect.Log(1002);
                 System.out.println("Sistema sendo fechado pelo usuario");
                 System.exit(0);
             }

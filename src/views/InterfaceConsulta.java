@@ -18,9 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
-import model.Arquivo;
-import model.BD;
-import model.Usuario;
+import models.Arquivo;
+import models.BDConnect;
+import models.Usuario;
 
 public class InterfaceConsulta {
 
@@ -35,7 +35,7 @@ public class InterfaceConsulta {
 	
 	
 	public InterfaceConsulta() {
-		BD.Log(8001, Usuario.getInstance().Get_Email());
+		BDConnect.Log(8001, Usuario.getInstance().Get_Email());
 		
 		menu = new JFrame();
 		menu.setLayout(new BorderLayout());
@@ -49,7 +49,7 @@ public class InterfaceConsulta {
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	BD.Log(1002);
+            	BDConnect.Log(1002);
                 System.out.println("Sistema sendo fechado pelo usuario");
                 System.exit(0);
             }

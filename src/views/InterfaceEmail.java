@@ -12,8 +12,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-import model.Autentificador;
-import model.BD;
+import models.LoginNameAuthenticator;
+import models.BDConnect;
 
 public class InterfaceEmail{
 
@@ -27,7 +27,7 @@ public class InterfaceEmail{
 	
 	public InterfaceEmail(){
 		
-		BD.Log(2001);
+		BDConnect.Log(2001);
 		area = new JFrame("Autentication Email");
 		panel = new JPanel();
 		area.setSize(500,300);
@@ -37,7 +37,7 @@ public class InterfaceEmail{
 		area.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-            	BD.Log(1002);
+            	BDConnect.Log(1002);
                 System.out.println("Sistema sendo fechado pelo usuario");
                 System.exit(0);
             }

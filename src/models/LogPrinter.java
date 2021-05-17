@@ -2,8 +2,8 @@ package models;
 
 public class LogPrinter {
 	public static void main(String[] args) {
-		BD.Estabelecer_Conexao();
+		BDConnect.Estabelecer_Conexao();
 		
-		BD.Print_Logs2();
+		BDConnect.Print_Logs2();
 	}
 }

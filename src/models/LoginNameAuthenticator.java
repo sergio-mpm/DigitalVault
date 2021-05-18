@@ -48,7 +48,7 @@ public class LoginNameAuthenticator {
 		if(instance == null)
 			instance = new LoginNameAuthenticator();
 		
-		return instance;
+		return instance; 
 	}
 	
 	private enum State { EMAIL, SENHA, CHAVE_PRIVADA, BLOQUEADO }
@@ -197,6 +197,8 @@ public class LoginNameAuthenticator {
 		ceritificadoDigital = Recuperar_Certificado_Digital(id);
 		
 		privateKey = Recuperar_Private_Key(chave_privada_path, frase_secreta);
+		
+		
 		
 		if(privateKey == null)
 		{
@@ -384,14 +386,14 @@ public class LoginNameAuthenticator {
 			JOptionPane.QUESTION_MESSAGE,
 			null,     //do not use a custom Icon
 			options,  //the titles of buttons
-			options[0]); //default button title
+			options[0]); //default button title 
 		
 		return n;
 	}
 	
 	public int Validar_Troca_Senha(String certificadoPath, String senha_str, String senhaConfirma_str)
 	{
-		String SALT = Functions.Get_Random_SALT();
+		String SALT = Functions.Get_Random_SALT(); 
 		boolean valido = true;
 		boolean alterarSenha = false;
 		boolean alterarCertificado = false;

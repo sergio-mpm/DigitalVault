@@ -571,7 +571,9 @@ public class LoginNameAuthenticator {
 		
 		try {
 			KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");
-			SecureRandom secureRandom = new SecureRandom(String_to_Byte(frase_secreta));
+			SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+			secureRandom.setSeed(frase_secreta.getBytes("UTF8"));
+			
 			int keyBitSize = 56;
 
 			keyGenerator.init(keyBitSize, secureRandom);

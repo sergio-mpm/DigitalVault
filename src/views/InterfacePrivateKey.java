@@ -47,7 +47,8 @@ public class InterfacePrivateKey {
 	public InterfacePrivateKey() {
 		BDConnect.Log(4001, LoginNameAuthenticator.getInstance().Get_LoginName());
 	
-		menu = new JFrame("Autenticação de Chave Privada");		panel = new JPanel();
+		menu = new JFrame("Autenticação de Chave Privada");
+		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		menu.setSize(400,400);
 		menu.setLocationRelativeTo(null);

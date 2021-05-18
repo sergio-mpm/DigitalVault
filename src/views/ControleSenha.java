@@ -49,7 +49,7 @@ public class ControleSenha {
 		}		
 	}
 	
-	public void addActResetButton(InterfaceSenha i) {
+	public void addActResetButton(InterfaceSenha i) { 
 		i.getReset().addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 	        {	     

@@ -70,12 +70,12 @@ public class InterfaceSenha {
 	public InterfaceSenha(int numberButtons) {
 		BDConnect.Log(3001, LoginNameAuthenticator.getInstance().Get_LoginName());
 		
-		menu = new JFrame("Authentication Password");
+		menu = new JFrame("Autenticação de Senha");
 		panel = new JPanel();
 		menu.setSize(500,200);
 		menu.setLocationRelativeTo(null);
 		buttons = new ArrayList<JButton>(numberButtons);
-		send = new JButton("Send Password");
+		send = new JButton("Enviar Senha");
 		reset = new JButton("Reset");
 		addSendButton();
 		createButtons(numberButtons);

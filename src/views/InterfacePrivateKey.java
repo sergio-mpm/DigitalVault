@@ -47,7 +47,7 @@ public class InterfacePrivateKey {
 	public InterfacePrivateKey() {
 		BDConnect.Log(4001, LoginNameAuthenticator.getInstance().Get_LoginName());
 	
-		menu = new JFrame("Autentication Private Key");		panel = new JPanel();
+		menu = new JFrame("Autenticação de Chave Privada");		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		menu.setSize(400,400);
 		menu.setLocationRelativeTo(null);
@@ -99,7 +99,7 @@ public class InterfacePrivateKey {
 	}
 	
 	public void addLabel() {
-		labelSenha = new JLabel("Senha Secreta");	
+		labelSenha = new JLabel("Senha da Chave Privada");	
 		labelSenha.setFont(new Font("Dialog", Font.BOLD, 15));
 	}
 	
@@ -117,7 +117,7 @@ public class InterfacePrivateKey {
 		panel.add(btAbrir , BorderLayout.NORTH);
 	}
 	public void addSendButtom() {
-		send = new JButton("Send");
+		send = new JButton("Confirmar");
 		send.setFont(new Font("Dialog", Font.BOLD, 15));
 		send.setPreferredSize(new Dimension(100,100));
 		panel.add(send , BorderLayout.SOUTH);

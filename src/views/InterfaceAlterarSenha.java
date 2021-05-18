@@ -99,8 +99,8 @@ public class InterfaceAlterarSenha {
 	
 	public void setLabels() {
 		label1 = new JLabel("Certificate Path");
-		label2 = new JLabel("Password");
-		label3 = new JLabel("Repetead Password");
+		label2 = new JLabel("Senha");
+		label3 = new JLabel("Senha Repetida");
 	}
 	
 	public void setTextCertificatePath() {

@@ -116,9 +116,9 @@ public class InterfaceCadastro {
 	public void setTexts() {
 		String[] messages = {"Administrador" , "Usuário"};
 		label1 = new JLabel("Certificate Path");
-		label2 = new JLabel("Group");
-		label3  =new JLabel("Password");
-		label4 = new JLabel("Repeat Password");
+		label2 = new JLabel("Grupo");
+		label3  =new JLabel("Senha");
+		label4 = new JLabel("Repetir Senha");
 		field1 = new JTextField(255);
 		field2 = new JComboBox<String>(messages);
 		field3 = new JPasswordField (8);

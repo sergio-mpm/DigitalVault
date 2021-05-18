@@ -17,7 +17,7 @@ public class ControleSenha {
 	private ArrayList<ParDigitos> atualValues;
 	
 	public void callInterfacePassword() {
-		InterfaceSenha ip = new InterfaceSenha(5);
+		InterfaceSenha ip = new InterfaceSenha(6);
 		atualValues = new ArrayList<ParDigitos>();
 		addValueAndActionToButton(ip);
 		AddActButtonSend(ip);

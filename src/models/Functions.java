@@ -22,8 +22,10 @@ public class Functions {
 		digitos.add(7);
 		digitos.add(8);
 		digitos.add(9);
+		digitos.add(10);
+		digitos.add(11);
 		
-		for(int i=0; i < 5; i++)
+		for(int i=0; i < 6; i++)
 		{
 			Random rnd = new Random();
 			
@@ -44,9 +46,9 @@ public class Functions {
 	{
 		char[] senha_array = Integer.toString(senha).toCharArray();
 		
-		if(senha_array.length < 6 || senha_array.length > 8 )
+		if(senha_array.length < 4 || senha_array.length > 6 )
 		{
-			System.out.println("Tamanha da senha invalido");
+			System.out.println("Tamanho da senha invalido");
 			return false;
 		}
 		

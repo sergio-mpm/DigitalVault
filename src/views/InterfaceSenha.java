@@ -1,18 +1,12 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import models.LoginNameAuthenticator;
@@ -87,7 +81,7 @@ public class InterfaceSenha {
 		createButtons(numberButtons);
 		addButtonsToPanel();
 		addPanel();
-		
+				
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -100,10 +94,10 @@ public class InterfaceSenha {
 	
 
 
-	public void createButtons(int numberButtons) {
+	public void createButtons(int numberButtons) { 
 		for (int i = 0 ; i < numberButtons ; i++) {
-		JButton button = new JButton();
-		buttons.add(button);
+			JButton button = new JButton();
+			buttons.add(button);
 		}
 	}
 	
@@ -130,8 +124,7 @@ public class InterfaceSenha {
 
 
 	public void addButtonsToPanel() {
-		for (int i = 0 ; i < buttons.size() ; i++) {
-			
+		for (int i = 0 ; i < buttons.size() ; i++) {			
 			panel.add(buttons.get(i));
 		}
 	}

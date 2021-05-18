@@ -1,6 +1,10 @@
 # DigitalVault
  INF1416 - CofreDigital
  
+ Trabalho realizado por:
+ Alex Nascimento Rodrigues - 16212588
+ Sergio Gustavo Mendonça Pyrrho Moreira - 1621240
+ 
  
  AJUSTE DO MYSQL-CONNECTOR-JAVA:
  

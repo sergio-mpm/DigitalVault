@@ -2,7 +2,7 @@
  INF1416 - CofreDigital
  
  Trabalho realizado por:
- Alex Nascimento Rodrigues - 16212588
+ Alex Nascimento Rodrigues - 1621588
  Sergio Gustavo Mendonça Pyrrho Moreira - 1621240
  
  

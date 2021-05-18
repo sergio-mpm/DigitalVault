@@ -22,10 +22,8 @@ public class Functions {
 		digitos.add(7);
 		digitos.add(8);
 		digitos.add(9);
-		digitos.add(10);
-		digitos.add(11);
 		
-		for(int i=0; i < 6; i++)
+		for(int i=0; i < 5; i++)
 		{
 			Random rnd = new Random();
 			

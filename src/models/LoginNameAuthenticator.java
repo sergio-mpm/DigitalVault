@@ -188,7 +188,7 @@ public class LoginNameAuthenticator {
 		if(current_state != State.CHAVE_PRIVADA)
 		{
 			JOptionPane.showMessageDialog(null, "Estado do Autentificador Invalido", "Erro", JOptionPane.ERROR_MESSAGE);
-			System.out.println("Estado do Autentificador Invalido");
+			System.out.println("Estado do Autenticador Invalido");
 			return -1;
 		}
 		

@@ -70,7 +70,7 @@ public class InterfaceSenha {
 	public InterfaceSenha(int numberButtons) {
 		BDConnect.Log(3001, LoginNameAuthenticator.getInstance().Get_LoginName());
 		
-		menu = new JFrame("Autentication Password");
+		menu = new JFrame("Authentication Password");
 		panel = new JPanel();
 		menu.setSize(500,200);
 		menu.setLocationRelativeTo(null);

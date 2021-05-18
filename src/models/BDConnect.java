@@ -10,9 +10,9 @@ public class BDConnect {
 	public static final String ANSI_RED = "\u001B[31m";
 	public static final String ANSI_GREEN = "\u001B[32m";
 	
-	static String url = "jdbc:mysql://localhost:3306/db_teste?useTimezone=true&serverTimezone=UTC";
+	static String url = "jdbc:mysql://localhost:3306/sectest?useTimezone=true&serverTimezone=UTC";
 	static String user = "root";
-	static String password  = "676ep4q9";
+	static String password  = "root";
 	
 	static String query = "select * from teste";
 	 

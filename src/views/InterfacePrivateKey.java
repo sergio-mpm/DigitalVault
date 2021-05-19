@@ -1,62 +1,37 @@
 package views;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
-import javax.swing.text.Position;
-import javax.swing.text.Segment;
-import javax.swing.undo.UndoableEdit;
 
 import models.LoginNameAuthenticator;
 import models.BDConnect;
 
 public class InterfacePrivateKey {
 
-
-	JFrame menu;
-	JPanel panel;
-	JButton btAbrir;
-	JLabel labelSenha;
-	JTextField senhaSecreta;
-	JPanel fieldSenha;
-	JButton send;
-	
+	private JFrame menu;
+	private JButton buttonAbrir;
+	private JLabel labelSenha;
+	private JPasswordField textFieldSenha;
+	private JButton buttonConfirmar;	
 	
 	public JTextField getSenhaSecreta() {
-		return senhaSecreta;
+		return textFieldSenha;
 	}
 
-
-	public void setSenhaSecreta(JTextField senhaSecreta) {
-		this.senhaSecreta = senhaSecreta;
+	public void setSenhaSecreta(JPasswordField senhaSecreta) {
+		this.textFieldSenha = senhaSecreta;
 	}
-
 
 	public InterfacePrivateKey() {
 		BDConnect.Log(4001, LoginNameAuthenticator.getInstance().Get_LoginName());
 	
-		menu = new JFrame("Autenticação de Chave Privada");
-		panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		menu.setSize(400,400);
-		menu.setLocationRelativeTo(null);
-		addPanel();
-		setAbrirConfig();
-		addLabel();
-		addText();
-		addSendButtom();
+		createMenu();
 		
 		menu.addWindowListener(new WindowAdapter() {
             @Override
@@ -68,81 +43,48 @@ public class InterfacePrivateKey {
         });
 	}
 	
+	private void createMenu() {
+		
+		menu = new JFrame("Autenticação de Chave Privada");
+		menu.setSize(400,200);
+		menu.setLayout(null);
+		menu.setLocationRelativeTo(null);
+
+		buttonAbrir = new JButton();
+		buttonAbrir.setBounds(20, 20, 350, 30);
+		buttonAbrir.setFont(new Font("Dialog", Font.BOLD, 18));
+		buttonAbrir.setText("Abrir arquivo");
+		
+		labelSenha = new JLabel("Senha da Chave Privada");	
+		labelSenha.setFont(new Font("Dialog", Font.BOLD, 15));
+		labelSenha.setBounds(20, 65, 200, 30); 
+		
+		textFieldSenha = new JPasswordField(2500);
+		textFieldSenha.setBounds(200, 65, 170, 30);
+		
+		buttonConfirmar = new JButton("Confirmar");
+		buttonConfirmar.setFont(new Font("Dialog", Font.BOLD, 18));
+		buttonConfirmar.setBounds(20, 105, 350, 30);		
+		
+		menu.add(buttonAbrir);
+		menu.add(labelSenha);
+		menu.add(textFieldSenha);
+		menu.add(buttonConfirmar);		
+	}
 	
 	public JFrame getScreen() {
-
 		return menu;
 	}
 
-
-	public void setScreen(JFrame screen) {
-
-		this.menu = screen;
-	}
-
-
 	public JButton getSend() {
-		return send;
-	}
-
-
-	public void setSend(JButton send) {
-		this.send = send;
-	}
-
-
-	public void setAbrirConfig() {
-		btAbrir = new JButton();
-		btAbrir.setBounds(new Rectangle(60, 49, 166, 69));
-		btAbrir.setFont(new Font("Dialog", Font.BOLD, 24));
-		btAbrir.setText("Abrir arquivo");
-		addButtom();
-	}
-	
-	public void addLabel() {
-		labelSenha = new JLabel("Senha da Chave Privada");	
-		labelSenha.setFont(new Font("Dialog", Font.BOLD, 15));
-	}
-	
-	public void addText() {
-		fieldSenha = new JPanel();
-		fieldSenha.setLayout(new BoxLayout(fieldSenha, BoxLayout.Y_AXIS));
-		senhaSecreta = new JTextField(255);
-		senhaSecreta.setDocument(new TamanhoFixoJText(255));
-		fieldSenha.add(labelSenha);
-		fieldSenha.add(senhaSecreta);
-		panel.add(fieldSenha , BorderLayout.CENTER);
-	}
-	
-	public void addButtom() {
-		panel.add(btAbrir , BorderLayout.NORTH);
-	}
-	public void addSendButtom() {
-		send = new JButton("Confirmar");
-		send.setFont(new Font("Dialog", Font.BOLD, 15));
-		send.setPreferredSize(new Dimension(100,100));
-		panel.add(send , BorderLayout.SOUTH);
-	}
-	
-	public void addPanel() {
-
-		menu.getContentPane().add(panel);
+		return buttonConfirmar;
 	}
 	
 	public void setVisible() {
-
 		menu.setVisible(true);
 	}
 
-
 	public JButton getBtAbrir() {
-		return btAbrir;
-	}
-
-
-	public void setBtAbrir(JButton btAbrir) {
-		this.btAbrir = btAbrir;
-	}
-	
-	
+		return buttonAbrir;
+	}	
 }

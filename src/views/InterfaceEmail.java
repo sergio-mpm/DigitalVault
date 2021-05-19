@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
@@ -10,7 +9,6 @@ import models.BDConnect;
 public class InterfaceEmail{
 
 	private JFrame area;
-	private JPanel panel;
 	private JTextField tf;
 	private JLabel textLabel;
 	private JButton send;
@@ -20,10 +18,10 @@ public class InterfaceEmail{
 		
 		BDConnect.Log(2001);
 		area = new JFrame("Autenticação de Email");
-		panel = new JPanel();
-		area.setSize(500,150);
+		area.setSize(500,130);
+		area.setLayout(null);
 		area.setLocationRelativeTo(null);
-		createLabelArea();
+		createArea();
 		
 		area.addWindowListener(new WindowAdapter() {
             @Override
@@ -35,85 +33,44 @@ public class InterfaceEmail{
         });
 	}
 	
-	public void addTextField() {
-		textLabel = new JLabel("Email"); 
-		tf = new JTextField(20);
-		panel.add(textLabel);
-		panel.add(tf);
-	}
-	
-	public void addButtonSend() {
-		send = new JButton("Send");
-		panel.add(send);
-	}
-	public void addButtonReset() {
+	private void createArea() {
+		
+		textLabel = new JLabel("Email");
+		textLabel.setBounds(30, 30, 100, 25);
+		
+		tf = new JTextField(60);	
+		tf.setBounds(70, 30, 220, 25);
+		
+		send = new JButton("Send");	
+		send.setBounds(300, 30, 80, 25);
+		
 		reset = new JButton("Reset");
-		panel.add(reset);
-	}
-	
-	public void createLabelArea()
-	{
-      addTextField();
-      addButtonSend();
-      addButtonReset();
-      addPanel();
-
-	}
-	public void addPanel() {
-		area.getContentPane().add(BorderLayout.CENTER , panel);
+		reset.setBounds(390, 30, 80, 25);
+		
+		area.add(textLabel);
+		area.add(tf);
+		area.add(send);
+		area.add(reset);
 	}
 	
 	public void setVisible() {
 		area.setVisible(true);
-	}
-	
+	}	
 
 	public JFrame getArea() {
 		return area;
 	}
-
-	public void setArea(JFrame area) {
-		this.area = area;
-	}
-
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
-
+	
 	public JTextField getTf() {
 		return tf;
-	}
-
-	public void setTf(JTextField tf) {
-		this.tf = tf;
-	}
-
-	public JLabel getTextLabel() {
-		return textLabel;
-	}
-
-	public void setTextLabel(JLabel textLabel) {
-		this.textLabel = textLabel;
 	}
 
 	public JButton getSend() {
 		return send;
 	}
 
-	public void setSend(JButton send) {
-		this.send = send;
-	}
-
 	public JButton getReset() {
 		return reset;
-	}
-
-	public void setReset(JButton reset) {
-		this.reset = reset;
 	}
 }
 

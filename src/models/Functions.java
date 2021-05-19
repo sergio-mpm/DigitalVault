@@ -8,6 +8,49 @@ import java.util.Random;
 
 public class Functions {
 	
+	public static ArrayList<TrioFonemas> Gerar_Set_Trios()
+	{
+		ArrayList<TrioFonemas> trio_fonemas = new ArrayList<TrioFonemas>();
+		ArrayList<String> fonemas = new ArrayList<String>();
+		fonemas.add("BA");
+		fonemas.add("CA");
+		fonemas.add("DA");
+		fonemas.add("FA");
+		fonemas.add("GA");
+		fonemas.add("HA");
+		fonemas.add("BE");
+		fonemas.add("CE");
+		fonemas.add("DE");
+		fonemas.add("FE");
+		fonemas.add("GE");
+		fonemas.add("HE");
+		fonemas.add("BO");
+		fonemas.add("CO");
+		fonemas.add("DO");
+		fonemas.add("FO");
+		fonemas.add("GO");
+		fonemas.add("HO");
+		
+		for(int i=0; i<5; i++)
+		{
+			Random rnd = new Random();
+			
+			int index = rnd.nextInt(fonemas.size());
+			String fonema1 = fonemas.get(index);
+			fonemas.remove(index);
+			index = rnd.nextInt(fonemas.size());
+			String fonema2 = fonemas.get(index);
+			fonemas.remove(index);
+			index = rnd.nextInt(fonemas.size());
+			String fonema3 = fonemas.get(index);
+			fonemas.remove(index);
+			
+			trio_fonemas.add(new TrioFonemas(fonema1, fonema2, fonema3));
+		}
+		
+		return trio_fonemas;
+	}
+	
 	public static ArrayList<ParDigitos> Gerar_Set_Pares()
 	{
 		ArrayList<ParDigitos> par_digitos = new ArrayList<ParDigitos>();
@@ -38,6 +81,35 @@ public class Functions {
 		}
 		
 		return par_digitos;
+	}
+	
+	public static boolean Validate_Pattern_Password(String senha) {
+		char[] senha_array = senha.toCharArray();
+		
+		if(senha_array.length < 8 || senha_array.length > 12) 
+		{
+			System.out.println("Tamanho da senha invalido");
+			return false;
+		}
+		
+		int substring_last_index = 3;
+		int substring_first_index = 2;
+		String first_substring;
+		String second_substring;
+		while(substring_last_index <= senha.length()) 
+		{
+			first_substring = senha.substring(substring_first_index-2, substring_last_index-2);
+			second_substring = senha.substring(substring_first_index, substring_last_index);
+			if(first_substring.equals(second_substring))
+			{
+				System.out.println("Senha fora do Padrão");
+				return false;
+			}
+			substring_last_index +=2;
+			substring_first_index +=2;
+		}
+		
+		return true;
 	}
 	
 	public static boolean Validar_Padrao_Senha(int senha)

@@ -11,6 +11,7 @@ import models.LoginNameAuthenticator;
 import models.BDConnect;
 import models.Functions;
 import models.ParDigitos;
+import models.TrioFonemas;
 
 public class ControleSenha {
 	

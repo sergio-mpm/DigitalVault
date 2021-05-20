@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 import models.LoginNameAuthenticator;
 import models.BDConnect;
 import models.Usuario;
-
+ 
 public class ControleAlterarSenha {
 
-	
+	 
 	public void trocaSenha(JPanel cabecalho , JPanel panel) {
 		InterfaceAlterarSenha ia = new InterfaceAlterarSenha();
 		ia.addCabecalho(cabecalho);

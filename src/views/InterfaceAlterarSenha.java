@@ -63,7 +63,7 @@ public class InterfaceAlterarSenha {
 		BDConnect.Log(7001, Usuario.getInstance().Get_Email());
 		
 		menu = new JFrame("Alterar Senha");
-		menu.setSize(600,600);
+		menu.setSize(500,400);
 		menu.setLocationRelativeTo(null);
 		corpo2 = new JPanel();
 		menu.add(corpo2 , BorderLayout.SOUTH);
@@ -85,15 +85,13 @@ public class InterfaceAlterarSenha {
 	
 	public void addCabecalho(JPanel cabecalho) {
 		this.cabecalho = cabecalho;
-		cabecalho.setLayout(new BorderLayout());
-		//cabecalho.setPreferredSize(new Dimension(100,100));
-		menu.add(cabecalho , BorderLayout.NORTH);
+		cabecalho.setLayout(new BorderLayout()); 
+		menu.add(cabecalho , "North");
 	}
 	
 	public void addCorpo1(JPanel corpo1) {
 		this.corpo1 = corpo1;
 		corpo1.setLayout(new BorderLayout());
-	    //corpo1.setPreferredSize(new Dimension(100,100));
 		menu.add(corpo1 , BorderLayout.CENTER);
 	}
 	
@@ -170,7 +168,7 @@ public class InterfaceAlterarSenha {
 	}
 	
 	public void setButtons() {
-		send = new JButton("Send");
+		send = new JButton("Enviar");
 		voltarMenu = new JButton("Voltar parao Menu");
 		buttons.add(send);
 		buttons.add(voltarMenu);

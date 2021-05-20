@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -43,7 +44,7 @@ public class InterfaceCadastro {
 		BDConnect.Log(6001, Usuario.getInstance().Get_Email());
 		
 		menu = new JFrame("Menu Cadastro");
-		menu.setSize(600,600);
+		menu.setSize(400,400);
 		menu.setLocationRelativeTo(null);
 		corpo2 = new JPanel();
 		menu.add(corpo2 , BorderLayout.SOUTH);
@@ -66,7 +67,7 @@ public class InterfaceCadastro {
 	public void addCabecalho(JPanel cabecalho) {
 		this.cabecalho = cabecalho;
 		cabecalho.setLayout(new BorderLayout());
-		menu.add(cabecalho , BorderLayout.NORTH);
+		menu.add(cabecalho , "North"); 
 	}
 	
 	public JTextField getField3() {
@@ -95,8 +96,9 @@ public class InterfaceCadastro {
 	    corpo1.setPreferredSize(new Dimension(200,200));
 		labeltotalUsuarios = new JLabel("Total de usuários no sistema:");
 		labeltotalUsuarios.setFont(new Font("Dialog", Font.BOLD, 15));
-		corpo1.add(labeltotalUsuarios , BorderLayout.CENTER);
-		menu.add(corpo1 , BorderLayout.CENTER);
+		corpo1.add(labeltotalUsuarios ,"Center");
+		corpo1.setBorder(BorderFactory.createEmptyBorder(0, 50, 5, 0));
+		menu.add(corpo1 , "Center");
 	}
 	
 	public JLabel getLabeltotalUsuario() {

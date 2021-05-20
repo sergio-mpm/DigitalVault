@@ -7,6 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,7 +40,7 @@ public class InterfaceConsulta {
 		
 		menu = new JFrame();
 		menu.setLayout(new BorderLayout());
-		menu.setSize(600,600);
+		menu.setSize(450,300);
 		menu.setLocationRelativeTo(null);
 		setConfigurationsOfPanels();
 		menu.add(corpo2 , BorderLayout.SOUTH);
@@ -62,10 +63,10 @@ public class InterfaceConsulta {
 		cabecalho.setPreferredSize(new Dimension(100,100));
 	    corpo1 = new JPanel();
 	    corpo1.setLayout(new BorderLayout());
-	    corpo1.setPreferredSize(new Dimension(200,200));
+	    corpo1.setPreferredSize(new Dimension(200,80));
 	    corpo2 = new JPanel();
 	    corpo2.setLayout(new BorderLayout());
-	    corpo2.setPreferredSize(new Dimension(200,200));
+	    corpo2.setPreferredSize(new Dimension(200,80));
 	    
 	}
 	
@@ -93,15 +94,15 @@ public class InterfaceConsulta {
 		this.cabecalho = cabecalho;
 		menu.add(cabecalho, BorderLayout.NORTH);
 	}
-	
+	 
 	public void addCorpo1() {
 		corpo1 = new JPanel();
 		corpo1.setLayout(new BorderLayout());
-	    corpo1.setPreferredSize(new Dimension(200,200));
-		totalConsultas = new JLabel("Total de consultas do usuario:");
+		totalConsultas = new JLabel("Total de consultas do usuario:"); 
 		totalConsultas.setFont(new Font("Dialog", Font.BOLD, 15));
-		corpo1.add(totalConsultas , BorderLayout.CENTER);
-		menu.add(corpo1 , BorderLayout.CENTER);
+		corpo1.add(totalConsultas , "Center");
+		corpo1.setBorder(BorderFactory.createEmptyBorder(0, 50, 5, 0));
+		menu.add(corpo1 , "Center");
 	}
 	
 	public JLabel getTotalConsultas() {
@@ -113,19 +114,22 @@ public class InterfaceConsulta {
 	}
 
 	public void addText() {
-		campoPasta = new JTextField();
-		campoPasta.setDocument(new TamanhoFixoJText(255));
-		corpo2.add(campoPasta , BorderLayout.NORTH);
+		JPanel subCorpo = new JPanel (new BorderLayout());
+		listar = new JButton("Listar");
+		subCorpo.add(listar, "East");
+		
+		campoPasta = new JTextField(100);
+		subCorpo.add(campoPasta , "Center");
+		
+		corpo2.add(subCorpo, "Center");
 	}
 	
 
 	public void setButtons() {
-		listar = new JButton("Listar");
-		sair = new JButton("Voltar parao Menu");
-		listar.setPreferredSize(new Dimension(50,50));
-		sair.setPreferredSize(new Dimension(50,50));
-		corpo2.add(listar);
-		corpo2.add(sair);
+		sair = new JButton("Voltar para o Menu");
+		
+		corpo2.add(sair, "South");
+		corpo2.setBorder(BorderFactory.createEmptyBorder(5, 50, 20, 50));
 		
 	}
 	

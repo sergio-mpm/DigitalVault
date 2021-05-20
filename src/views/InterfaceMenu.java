@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -98,29 +99,31 @@ public class InterfaceMenu {
 		BDConnect.Log(5001, LoginNameAuthenticator.getInstance().Get_LoginName());		
 		menu = new JFrame("Menu");
 		menu.setLayout(new BorderLayout());
-		menu.setSize(600,600);
+		menu.setSize(450,390);
 		menu.setLocationRelativeTo(null);
 		setConfigurationsOfPanels();
 		fillCabecalho();
-		fillAcessos();
+		fillAcessos(); 
 		if ( grupo.equals("administrador")) {
 			fillButtonsAdm();
 		} else {
 			fillButtonsUser();
 		}
-		menu.add(cabecalho , BorderLayout.NORTH);
-		menu.add(corpo1 , BorderLayout.CENTER);
-		menu.add(corpo2 , BorderLayout.SOUTH);
+		
+		corpo2.setBorder(BorderFactory.createEmptyBorder(0, 50, 5, 0));
+		
+		menu.add(cabecalho , "North");
+		menu.add(corpo1 , "Center");
+		menu.add(corpo2 , "South");
 		
 		menu.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
             	BDConnect.Log(1002);
-                System.out.println("Sistema sendo fechado pelo usuario");
+                System.out.println("Sistema sendo fechado pelo usuario"); 
                 System.exit(0);
             }
         });
-		//addCabecalho();
 	}
 	
 	public void setConfigurationsOfPanels() {
@@ -131,8 +134,8 @@ public class InterfaceMenu {
 	    corpo1.setLayout(new BorderLayout());
 	    corpo1.setPreferredSize(new Dimension(200,200));
 	    corpo2 = new JPanel();
-	    corpo2.setLayout(new BoxLayout(corpo2, BoxLayout.Y_AXIS));
-	    corpo2.setPreferredSize(new Dimension(600,300));
+	    corpo2.setLayout(new BoxLayout(corpo2, BoxLayout.Y_AXIS)); 
+	    corpo2.setPreferredSize(new Dimension(400,200));
 	}
 	
 	
@@ -144,15 +147,17 @@ public class InterfaceMenu {
 		login.setFont(new Font("Dialog", Font.BOLD, 15));
 		grupo.setFont(new Font("Dialog", Font.BOLD, 15));
 		nome.setFont(new Font("Dialog", Font.BOLD, 15));
-		cabecalho.add(login , BorderLayout.NORTH);
-		cabecalho.add(grupo , BorderLayout.CENTER);
-		cabecalho.add(nome , BorderLayout.SOUTH);
-	}
+		cabecalho.add(login , "North");
+		cabecalho.add(grupo , "Center");
+		cabecalho.add(nome , "South");
+		cabecalho.setBorder(BorderFactory.createEmptyBorder(20, 50, 0, 20));
+	} 
 	
 	public void fillAcessos() {
 		totalAcessos = new JLabel("Total de acessos do usuário: ");
 		totalAcessos.setFont(new Font("Dialog", Font.BOLD, 15));
-		corpo1.add(totalAcessos , BorderLayout.CENTER);
+		corpo1.add(totalAcessos, "Center");
+		corpo1.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 20));
 	}
 	
 	public void fillButtonsAdm() {
@@ -164,10 +169,6 @@ public class InterfaceMenu {
 		corpo2.add(button2);
 		corpo2.add(button3);
 		corpo2.add(button4);
-		button1.setPreferredSize(new Dimension(600,100));
-		button2.setPreferredSize(new Dimension(600,100));
-		button3.setPreferredSize(new Dimension(600,100));
-		button4.setPreferredSize(new Dimension(600,100));
 	}
 	
 	public void fillButtonsUser() {
@@ -177,9 +178,6 @@ public class InterfaceMenu {
 		corpo2.add(button2);
 		corpo2.add(button3);
 		corpo2.add(button4);
-		button2.setPreferredSize(new Dimension(600,100));
-		button3.setPreferredSize(new Dimension(600,100));
-		button4.setPreferredSize(new Dimension(600,100));
 	}
 	
 	public JButton getButton1() {

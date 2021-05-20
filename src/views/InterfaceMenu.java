@@ -10,7 +10,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -65,10 +64,10 @@ public class InterfaceMenu {
 	private JLabel grupo;
 	private JLabel nome;
 	private JLabel totalAcessos;
-	private JButton buttonCadastrar;
-	private JButton buttonAlterar;
-	private JButton buttonConsultar;
-	private JButton buttonSair;
+	private JButton button1;
+	private JButton button2;
+	private JButton button3;
+	private JButton button4;
 	
 	public JPanel getCabecalho() {
 		return cabecalho;
@@ -97,15 +96,21 @@ public class InterfaceMenu {
 	
 	public InterfaceMenu(String grupo) {
 		BDConnect.Log(5001, LoginNameAuthenticator.getInstance().Get_LoginName());		
-		
 		menu = new JFrame("Menu");
-		menu.setLayout( new BorderLayout() );
-		menu.setSize(400,400);
+		menu.setLayout(new BorderLayout());
+		menu.setSize(600,600);
 		menu.setLocationRelativeTo(null);
-		
+		setConfigurationsOfPanels();
 		fillCabecalho();
-		fillCorpo1();
-		fillCorpo2(grupo);   
+		fillAcessos();
+		if ( grupo.equals("administrador")) {
+			fillButtonsAdm();
+		} else {
+			fillButtonsUser();
+		}
+		menu.add(cabecalho , BorderLayout.NORTH);
+		menu.add(corpo1 , BorderLayout.CENTER);
+		menu.add(corpo2 , BorderLayout.SOUTH);
 		
 		menu.addWindowListener(new WindowAdapter() {
             @Override
@@ -115,95 +120,98 @@ public class InterfaceMenu {
                 System.exit(0);
             }
         });
+		//addCabecalho();
+	}
+	
+	public void setConfigurationsOfPanels() {
+		cabecalho = new JPanel();  
+		cabecalho.setLayout(new BorderLayout());
+		cabecalho.setPreferredSize(new Dimension(100,100));
+	    corpo1 = new JPanel();
+	    corpo1.setLayout(new BorderLayout());
+	    corpo1.setPreferredSize(new Dimension(200,200));
+	    corpo2 = new JPanel();
+	    corpo2.setLayout(new BoxLayout(corpo2, BoxLayout.Y_AXIS));
+	    corpo2.setPreferredSize(new Dimension(600,300));
 	}
 	
 	
 	
-	private void fillCabecalho() {
-		cabecalho = new JPanel( new BorderLayout());	
-		
+	public void fillCabecalho() {
 		login = new JLabel("Login : ");
-		login.setFont(new Font("Dialog", Font.BOLD, 15));
-		
 		grupo = new JLabel("Grupo : ");
-		grupo.setFont(new Font("Dialog", Font.BOLD, 15));
-		
 		nome  = new JLabel("Nome : ");
+		login.setFont(new Font("Dialog", Font.BOLD, 15));
+		grupo.setFont(new Font("Dialog", Font.BOLD, 15));
 		nome.setFont(new Font("Dialog", Font.BOLD, 15));
-
-		cabecalho.add(login, "North");
-		cabecalho.add(grupo, "Center");
-		cabecalho.add(nome, "South");
-		cabecalho.setBorder(BorderFactory.createEmptyBorder(20, 50, 0, 20));
-		
-		menu.getContentPane().add(cabecalho, "North"); 
+		cabecalho.add(login , BorderLayout.NORTH);
+		cabecalho.add(grupo , BorderLayout.CENTER);
+		cabecalho.add(nome , BorderLayout.SOUTH);
 	}
 	
-	private void fillCorpo1() {
-	    corpo1 = new JPanel( new BorderLayout() );
+	public void fillAcessos() {
 		totalAcessos = new JLabel("Total de acessos do usuário: ");
 		totalAcessos.setFont(new Font("Dialog", Font.BOLD, 15));
-		corpo1.add(totalAcessos, "Center");
-		corpo1.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 20));
-		menu.getContentPane().add(corpo1, "Center");  
+		corpo1.add(totalAcessos , BorderLayout.CENTER);
 	}
 	
-	private void fillCorpo2(String grupo) {
-		corpo2 = new JPanel( new BorderLayout() );
-		JPanel subCorpo = new JPanel (new BorderLayout() );
-		
-		if ( grupo.equals("administrador")) {
-			
-			buttonCadastrar = new JButton("Cadastrar um novo usuário");
-			subCorpo.add(buttonCadastrar, "West");
-		}
-		
-		buttonAlterar = new JButton("Alterar senha pessoal e certificado digital do usuário");		
-		buttonConsultar = new JButton("Consultar pasta de arquivos secretos do usuário");	
-		buttonSair = new JButton("Sair do Sistema");		
-		
-		corpo2.add(buttonAlterar, "North");
-		corpo2.add(buttonConsultar, "Center");
-		
-		subCorpo.add(buttonSair, "Center");	
-		
-		corpo2.add(subCorpo, "South");
-		
-		corpo2.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-
-		menu.getContentPane().add(corpo2, "South"); 
+	public void fillButtonsAdm() {
+		button1 = new JButton("Cadastrar um novo usuário");
+		button2 = new JButton("Alterar senha pessoal e certificado digital do usuário");
+		button3 = new JButton("Consultar pasta de arquivos secretos do usuário");
+		button4 = new JButton("Sair do Sistema");
+		corpo2.add(button1);
+		corpo2.add(button2);
+		corpo2.add(button3);
+		corpo2.add(button4);
+		button1.setPreferredSize(new Dimension(600,100));
+		button2.setPreferredSize(new Dimension(600,100));
+		button3.setPreferredSize(new Dimension(600,100));
+		button4.setPreferredSize(new Dimension(600,100));
+	}
+	
+	public void fillButtonsUser() {
+		button2 = new JButton("Alterar senha pessoal e certificado digital do usuário");
+		button3 = new JButton("Consultar pasta de arquivos secretos do usuário");
+		button4 = new JButton("Sair do Sistema");
+		corpo2.add(button2);
+		corpo2.add(button3);
+		corpo2.add(button4);
+		button2.setPreferredSize(new Dimension(600,100));
+		button3.setPreferredSize(new Dimension(600,100));
+		button4.setPreferredSize(new Dimension(600,100));
 	}
 	
 	public JButton getButton1() {
-		return buttonCadastrar;
+		return button1;
 	}
 
 	public void setButton1(JButton button1) {
-		this.buttonCadastrar = button1;
+		this.button1 = button1;
 	}
 
 	public JButton getButton2() {
-		return buttonAlterar;
+		return button2;
 	}
 
 	public void setButton2(JButton button2) {
-		this.buttonAlterar = button2;
+		this.button2 = button2;
 	}
 
 	public JButton getButton3() {
-		return buttonConsultar;
+		return button3;
 	}
 
 	public void setButton3(JButton button3) {
-		this.buttonConsultar = button3;
+		this.button3 = button3;
 	}
 
 	public JButton getButton4() {
-		return buttonSair;
+		return button4;
 	}
 
 	public void setButton4(JButton button4) {
-		this.buttonSair = button4;
+		this.button4 = button4;
 	}
 
 	public void addCabecalho() {

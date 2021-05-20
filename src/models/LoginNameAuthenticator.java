@@ -122,7 +122,7 @@ public class LoginNameAuthenticator {
 		return 1;
 	}
 
-	public int Validar_Senha(ArrayList<ParDigitos> par_digitos)
+	public int Validar_Senha(ArrayList<TrioFonemas> trio_fonemas)
 	{
 		if(current_state != State.SENHA)
 		{
@@ -131,7 +131,7 @@ public class LoginNameAuthenticator {
 			return -1;
 		}
 		
-		if(par_digitos.size() > 8)
+		if(trio_fonemas.size() > 8)
 		{
 			return Senha_Invalida();
 		}
@@ -139,7 +139,7 @@ public class LoginNameAuthenticator {
 		String senha = BDConnect.Get_Senha_by_Id(id);
 		String SALT = BDConnect.Get_Salt_by_Id(id);
 		
-		if(Testa_Senhas(par_digitos, SALT, senha))
+		if(Testa_Senhas(trio_fonemas, SALT, senha))
 		{
 			BDConnect.Log(3003, login_name);
 			System.out.println("Senha Validada");
@@ -728,15 +728,15 @@ public class LoginNameAuthenticator {
 		return new String(bytes);
 	}
     
-    private boolean Testa_Senhas(ArrayList<ParDigitos> par_digitos, String SALT, String senha_hash)
+    private boolean Testa_Senhas(ArrayList<TrioFonemas> trio_fonemas, String SALT, String senha_hash)
     {
     	String bitMask = null;
     	
-    	for(int i = 0; i < Math.pow(2, par_digitos.size()); i++)
+    	for(int i = 0; i < Math.pow(2, trio_fonemas.size()); i++)
     	{
     		bitMask = Integer.toBinaryString(i);
     		
-    		while(bitMask.length() < par_digitos.size())
+    		while(bitMask.length() < trio_fonemas.size())
     		{
     			bitMask = "0" + bitMask;
     		}
@@ -745,9 +745,11 @@ public class LoginNameAuthenticator {
     		for(int j = 0; j < bitMask.length(); j++)
     		{
     			if(bitMask.charAt(j) == '0')
-    				sb.append(String.valueOf(par_digitos.get(j).n1));
+    				sb.append(String.valueOf(trio_fonemas.get(j).fonema1));
+    			else if(bitMask.charAt(j) == '1')
+    				sb.append(String.valueOf(trio_fonemas.get(j).fonema2));
     			else
-    				sb.append(String.valueOf(par_digitos.get(j).n2));
+    				sb.append(String.valueOf(trio_fonemas.get(j).fonema3));
     		}
     		
     		int senha = Integer.parseInt(sb.toString());

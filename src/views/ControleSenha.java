@@ -19,7 +19,7 @@ public class ControleSenha {
 	private ArrayList<TrioFonemas> atualValues;
 	
 	public void callInterfacePassword() {
-		InterfaceSenha ip = new InterfaceSenha(6);
+		InterfaceSenha ip = new InterfaceSenha(5);
 		//atualValues = new ArrayList<ParDigitos>();
 		atualValues = new ArrayList<TrioFonemas>();
 		addValueAndActionToButton(ip);
@@ -29,14 +29,14 @@ public class ControleSenha {
 		
 	}
 	
-	/*
+	
 	public void addValuetoButton(int number1 , int number2 , JButton button) {
 		String number1String = Integer.toString(number1);
 		String number2String = Integer.toString(number2);
 		button.setText(number1String + "|" + number2String);
 		button.setPreferredSize(new Dimension(80,80));
 	}
-	*/
+	
 	
 	 public void addValuetoButton(String fonema1, String fonema2, String fonema3, JButton button) {
 	 	button.setText(fonema1 + "-" + fonema2 + "-" + fonema3);

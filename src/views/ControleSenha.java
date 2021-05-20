@@ -19,7 +19,7 @@ public class ControleSenha {
 	private ArrayList<TrioFonemas> atualValues;
 	
 	public void callInterfacePassword() {
-		InterfaceSenha ip = new InterfaceSenha(5);
+		InterfaceSenha ip = new InterfaceSenha(6);
 		//atualValues = new ArrayList<ParDigitos>();
 		atualValues = new ArrayList<TrioFonemas>();
 		addValueAndActionToButton(ip);

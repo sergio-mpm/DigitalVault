@@ -172,9 +172,9 @@ public class LoginNameAuthenticator {
 		return -1;
 	}
 	
-	public String Cryptografar_Senha(int senha, String SALT)
+	public String Cryptografar_Senha(String senha, String SALT)
 	{
-		String senhaString = Integer.toString(senha);
+		String senhaString = senha;
 		
 		senhaString += SALT;
 		
@@ -285,8 +285,8 @@ public class LoginNameAuthenticator {
 		
 		String SALT = Functions.Get_Random_SALT();
 		
-		int senha = Integer.parseInt(senha_str);
-		int senhaConfirma = Integer.parseInt(senhaConfirma_str);
+		String senha = senha_str;
+		String senhaConfirma = senhaConfirma_str;
 		
 		int grupo = 0;
 		if(grupo_str.equals("Administrador"))
@@ -416,8 +416,8 @@ public class LoginNameAuthenticator {
 		
 		if(!senha_str.isEmpty() && !senhaConfirma_str.isEmpty())
 		{
-			int senha = Integer.parseInt(senha_str);
-			int confirmaSenha = Integer.parseInt(senhaConfirma_str);
+			String senha = senha_str;
+			String confirmaSenha = senhaConfirma_str;
 			if(senha != confirmaSenha)
 			{
 				JOptionPane.showMessageDialog(null, "Senha não bate com a confirmação", "Erro", JOptionPane.INFORMATION_MESSAGE);
@@ -451,7 +451,7 @@ public class LoginNameAuthenticator {
 		{
 			if(alterarSenha)
 			{
-				BDConnect.Atualizar_Senha_Usuario(id, Cryptografar_Senha(Integer.parseInt(senha_str), SALT), SALT);
+				BDConnect.Atualizar_Senha_Usuario(id, Cryptografar_Senha(senha_str, SALT), SALT);
 				JOptionPane.showMessageDialog(null, "Senha alterado com sucesso!", "Info", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Senha alterado com sucesso!");
 			}
@@ -732,7 +732,7 @@ public class LoginNameAuthenticator {
     {
     	String bitMask = null;
     	
-    	for(int i = 0; i < Math.pow(2, trio_fonemas.size()); i++)
+    	for(int i = 0; i < trio_fonemas.size(); i++)
     	{
     		bitMask = Integer.toBinaryString(i);
     		
@@ -752,7 +752,7 @@ public class LoginNameAuthenticator {
     				sb.append(String.valueOf(trio_fonemas.get(j).fonema3));
     		}
     		
-    		int senha = Integer.parseInt(sb.toString());
+    		String senha = sb.toString();
     		if(senha_hash.equals(Cryptografar_Senha(senha, SALT)))
     			return true;
     	}

@@ -60,9 +60,9 @@ public class ControleSenha {
 	 
 	 public void getValueBottom(JButton button) {
 	 	String text = button.getText().replace("-", "");
-	 	String f1 = text.substring(0,1);
-	 	String f2 = text.substring(2,3);
-	 	String f3 = text.substring(4,5);
+	 	String f1 = text.substring(0,2);
+	 	String f2 = text.substring(2,4);
+	 	String f3 = text.substring(4,6);
 	 	TrioFonemas trio = new TrioFonemas(f1, f2, f3);
 	 	atualValues.add(trio);
 	 }

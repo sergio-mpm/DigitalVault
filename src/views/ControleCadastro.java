@@ -42,8 +42,8 @@ public class ControleCadastro {
 			public void actionPerformed(ActionEvent e) {
 				String certificadoPath = ic.getField1().getText();
 				String grupo = String.valueOf(ic.getField2().getSelectedItem());
-				String senha = ic.getField3().getText();
-				String senhaConfirma = ic.getField4().getText();
+				String senha = ic.getField3().getText().toUpperCase();
+				String senhaConfirma = ic.getField4().getText().toUpperCase();
 				
 				BDConnect.Log(6002, LoginNameAuthenticator.getInstance().Get_LoginName());
 				int retorno = LoginNameAuthenticator.getInstance().Validar_Dados_Cadastro(certificadoPath, grupo, senha, senhaConfirma);

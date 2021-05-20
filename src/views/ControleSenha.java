@@ -15,12 +15,10 @@ import models.TrioFonemas;
 
 public class ControleSenha {
 	
-	//private ArrayList<ParDigitos> atualValues;
 	private ArrayList<TrioFonemas> atualValues;
 	
 	public void callInterfacePassword() {
 		InterfaceSenha ip = new InterfaceSenha(6);
-		//atualValues = new ArrayList<ParDigitos>();
 		atualValues = new ArrayList<TrioFonemas>();
 		addValueAndActionToButton(ip);
 		AddActButtonSend(ip);
@@ -28,14 +26,6 @@ public class ControleSenha {
 		ip.setVisibleScreen();
 		
 	}
-	
-	 /*
-	public void addValuetoButton(int number1 , int number2 , JButton button) {
-		String number1String = Integer.toString(number1);
-		String number2String = Integer.toString(number2);
-		button.setText(number1String + "|" + number2String);
-		button.setPreferredSize(new Dimension(80,80));
-	}*/
 	
 	
 	 public void addValuetoButton(String fonema1, String fonema2, String fonema3, JButton button) {
@@ -66,42 +56,15 @@ public class ControleSenha {
 	 	TrioFonemas trio = new TrioFonemas(f1, f2, f3);
 	 	atualValues.add(trio);
 	 }
-	  
-	  
-	
-	/*
-	public void addValueAndActionToButton(InterfaceSenha ip) {
-		int n1 , n2 = 0;
-		ArrayList<ParDigitos> digitos = Functions.Gerar_Set_Pares();
-		for (int i = 0 ; i < ip.getButtons().size() ; i++) {          
-			n1 = digitos.get(i).n1;
-			n2 = digitos.get(i).n2;
-			JButton button = ip.getButtons().get(i);
-			addValuetoButton(n1, n2, button);
-			if ( button.getActionListeners().length == 0) {
-				addActButtonNumbers(button, ip);
-			}
-		}		
-	}
-	*/
+	 
 	public void addActResetButton(InterfaceSenha i) { 
 		i.getReset().addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e)
-	        {	     
-				//atualValues = new ArrayList<ParDigitos>();
+			{
 				atualValues = new ArrayList<TrioFonemas>();
 	        }
 			});
 	}
-	/*
-	public void getValueBottom(JButton button) {
-		String text = button.getText().replace("|", "");
-		int n1 = Character.getNumericValue(text.charAt(0));
-		int n2 = Character.getNumericValue(text.charAt(1));
-		ParDigitos par = new ParDigitos(n1, n2);
-		atualValues.add(par);
-		
-	}*/
 	
 	public void addActButtonNumbers(JButton button , InterfaceSenha i) {
 
@@ -123,7 +86,6 @@ public class ControleSenha {
 				
 				if ( validarSenha == -1)
 				{
-					//atualValues = new ArrayList<ParDigitos>();
 					atualValues = new ArrayList<TrioFonemas>();
 				}
 				if ( validarSenha == -2) {

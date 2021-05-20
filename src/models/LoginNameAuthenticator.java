@@ -306,7 +306,7 @@ public class LoginNameAuthenticator {
 		String email = Recuperar_Email_Certificado(certificado);
 		String nome = Recuperar_Nome_Certificado(certificado);
 		
-		if(senha != senhaConfirma)
+		if(senha == senhaConfirma)
 		{
 			JOptionPane.showMessageDialog(null, "Senha não bate com a confirmação", "Erro", JOptionPane.INFORMATION_MESSAGE);
 			System.out.println("Senha não bate com a confirmação");
@@ -419,7 +419,7 @@ public class LoginNameAuthenticator {
 		{
 			String senha = senha_str;
 			String confirmaSenha = senhaConfirma_str;
-			if(senha != confirmaSenha)
+			if(senha.equals(confirmaSenha))
 			{
 				JOptionPane.showMessageDialog(null, "Senha não bate com a confirmação", "Erro", JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Senha não bate com a confirmção");
@@ -731,35 +731,35 @@ public class LoginNameAuthenticator {
     
     private boolean Testa_Senhas(ArrayList<TrioFonemas> trio_fonemas, String SALT, String senha_hash)
     {
-    	String bitMask = null;
+    	String senha = null;
+    	String[][] FonemasDigitados = {{trio_fonemas.get(0).fonema1, trio_fonemas.get(0).fonema2, trio_fonemas.get(0).fonema3,},
+    								   {trio_fonemas.get(1).fonema1, trio_fonemas.get(1).fonema2, trio_fonemas.get(1).fonema3,},
+    								   {trio_fonemas.get(2).fonema1, trio_fonemas.get(2).fonema2, trio_fonemas.get(2).fonema3}};
     	
-    	for(int i = 0; i < trio_fonemas.size(); i++)
+    	for(int h = 0; h < trio_fonemas.size(); h++)
     	{
-    		bitMask = Integer.toBinaryString(i);
-    		
-    		while(bitMask.length() < trio_fonemas.size())
-    		{
-    			bitMask = "0" + bitMask;
-    		}
-    		
-    		StringBuffer sb = new StringBuffer();
-    		for(int j = 0; j < bitMask.length(); j++)
-    		{
-    			if(bitMask.charAt(j) == '0')
-    				sb.append(String.valueOf(trio_fonemas.get(j).fonema1));
-    			else if(bitMask.charAt(j) == '1')
-    				sb.append(String.valueOf(trio_fonemas.get(j).fonema2));
-    			else
-    				sb.append(String.valueOf(trio_fonemas.get(j).fonema3));
-    		}
-    		
-    		String senha = sb.toString();
-    		if(senha_hash.equals(Cryptografar_Senha(senha, SALT)))
-    			return true;
+    		FonemasDigitados[h][0] = trio_fonemas.get(h).fonema1;
+    		FonemasDigitados[h][1] = trio_fonemas.get(h).fonema2;
+    		FonemasDigitados[h][2] = trio_fonemas.get(h).fonema3;
     	}
     	
+    	for(int i = 0; i < 3; i++)
+    	{
+    		for(int j = 0; j < 3; j++)
+    		{
+    			for(int k = 0; k < 3; k++)
+    			{
+    				senha = FonemasDigitados[0][i];
+    				senha = senha + FonemasDigitados[1][j];
+    				senha = senha + FonemasDigitados[2][k];
+    				if(senha_hash.equals(Cryptografar_Senha(senha, SALT)))
+    					return true;
+    			}
+    		}
+    	}
     	return false;
     }
+    
     
 	public void Efetuar_Login()
 	{

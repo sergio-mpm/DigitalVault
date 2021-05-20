@@ -72,7 +72,7 @@ public class InterfaceSenha {
 		
 		menu = new JFrame("Autenticação de Senha");
 		panel = new JPanel();
-		menu.setSize(500,200);
+		menu.setSize(500,300);
 		menu.setLocationRelativeTo(null);
 		buttons = new ArrayList<JButton>(numberButtons);
 		send = new JButton("Enviar Senha");
@@ -131,7 +131,7 @@ public class InterfaceSenha {
 	
 	public void reinicialize() {
 		panel = new JPanel();
-		buttons = new ArrayList<JButton>(5);
+		buttons = new ArrayList<JButton>(6);
 	}
 	
 	public void addPanel() {

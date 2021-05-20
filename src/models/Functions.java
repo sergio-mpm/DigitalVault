@@ -31,7 +31,7 @@ public class Functions {
 		fonemas.add("GO");
 		fonemas.add("HO");
 		
-		for(int i=0; i<5; i++)
+		for(int i=0; i<6; i++)
 		{
 			Random rnd = new Random();
 			

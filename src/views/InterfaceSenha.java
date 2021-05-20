@@ -71,8 +71,8 @@ public class InterfaceSenha {
 		BDConnect.Log(3001, LoginNameAuthenticator.getInstance().Get_LoginName());
 		
 		menu = new JFrame("Autenticação de Senha");
-		panel = new JPanel();
-		menu.setSize(500,300);
+		panel = new JPanel(new BorderLayout());
+		menu.setSize(350,300);
 		menu.setLocationRelativeTo(null);
 		buttons = new ArrayList<JButton>(numberButtons);
 		send = new JButton("Enviar Senha");
@@ -95,19 +95,41 @@ public class InterfaceSenha {
 
 
 	public void createButtons(int numberButtons) { 
+		JPanel tempPanel = new JPanel (new BorderLayout());
+		JPanel tempPanel2 = new JPanel (new BorderLayout());
 		for (int i = 0 ; i < numberButtons ; i++) {
 			JButton button = new JButton();
 			buttons.add(button);
+			switch(i) {
+			case 0:
+				tempPanel.add(buttons.get(i),"West");
+				break;
+			case 1:
+				tempPanel.add(buttons.get(i),"Center");
+				break;
+			case 2:
+				tempPanel.add(buttons.get(i),"East");
+				break;
+			case 3:
+				tempPanel2.add(buttons.get(i),"West");
+				break;
+			case 4:
+				tempPanel2.add(buttons.get(i),"Center");
+				break;
+			case 5:
+				tempPanel2.add(buttons.get(i),"East");
+				break;
+			}
 		}
+		panel.add(tempPanel, "North");
+		panel.add(tempPanel2, "Center");
 	}
 	
 	public void addSendButton() {
-		JPanel panelCommands = new JPanel();
-		JPanel passwordArea = new JPanel();
-		panelCommands.add(send);
-		panelCommands.add(reset);
-		menu.getContentPane().add(BorderLayout.SOUTH , panelCommands);
-		menu.getContentPane().add(BorderLayout.CENTER,passwordArea);
+		JPanel panelCommands = new JPanel(new BorderLayout());
+		panelCommands.add(send, "North");
+		panelCommands.add(reset, "Center");
+		panel.add(panelCommands, "South");
 	}
 
 
@@ -125,17 +147,17 @@ public class InterfaceSenha {
 
 	public void addButtonsToPanel() {
 		for (int i = 0 ; i < buttons.size() ; i++) {			
-			panel.add(buttons.get(i));
+			
 		}
 	}
 	
 	public void reinicialize() {
-		panel = new JPanel();
+		panel = new JPanel(new BorderLayout());
 		buttons = new ArrayList<JButton>(6);
 	}
 	
 	public void addPanel() {
-		menu.getContentPane().add(BorderLayout.NORTH , panel);
+		menu.getContentPane().add(panel);
 	}
 	
 	public void setVisibleScreen() {

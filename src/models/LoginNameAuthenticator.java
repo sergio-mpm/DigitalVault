@@ -133,6 +133,7 @@ public class LoginNameAuthenticator {
 		
 		if(trio_fonemas.size() > 8)
 		{
+			System.out.println("ERRO EM VALIDAR TAM 8");
 			return Senha_Invalida();
 		}
 		
@@ -146,7 +147,7 @@ public class LoginNameAuthenticator {
 			current_state = State.CHAVE_PRIVADA;
 			return 1;
 		}
-
+		System.out.println("ERRO EM Comparar Senha");
 		return Senha_Invalida();
 	}
 	

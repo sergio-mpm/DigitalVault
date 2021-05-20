@@ -1,7 +1,7 @@
 
-insert into grupos (nome) values ("administrador");
+insert into grupos (nome, GID) values ("administrador", "1");
 
-insert into grupos (nome) values ("usuario");
+insert into grupos (nome, GID) values ("usuario", "2");
 
 insert into usuarios (login_name, nome, certificado_digital, senha, id_grupo, SALT) values ("admin@inf1416.puc-rio.br", "Adminstrador", "-----BEGIN CERTIFICATE-----
 MIID9jCCAt6gAwIBAgIBATANBgkqhkiG9w0BAQsFADCBhDELMAkGA1UEBhMCQlIx

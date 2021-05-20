@@ -8,22 +8,22 @@ import models.BDConnect;
 
 public class InterfaceEmail{
 
-	private JFrame area;
+	private JFrame frameEmail;
 	private JTextField tf;
 	private JLabel textLabel;
 	private JButton send;
 	private JButton reset;	
 	
-	public InterfaceEmail(){
+	public InterfaceEmail() {
 		
 		BDConnect.Log(2001);
-		area = new JFrame("Autenticação de Email");
-		area.setSize(500,130);
-		area.setLayout(null);
-		area.setLocationRelativeTo(null);
+		frameEmail = new JFrame("Autenticação de Email");
+		frameEmail.setSize(500,130);
+		frameEmail.setLayout(null);
+		frameEmail.setLocationRelativeTo(null);
 		createArea();
 		
-		area.addWindowListener(new WindowAdapter() {
+		frameEmail.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
             	BDConnect.Log(1002);
@@ -47,18 +47,18 @@ public class InterfaceEmail{
 		reset = new JButton("Reset");
 		reset.setBounds(390, 30, 80, 25);
 		
-		area.add(textLabel);
-		area.add(tf);
-		area.add(send);
-		area.add(reset);
+		frameEmail.add(textLabel);
+		frameEmail.add(tf);
+		frameEmail.add(send);
+		frameEmail.add(reset);
 	}
 	
 	public void setVisible() {
-		area.setVisible(true);
+		frameEmail.setVisible(true);
 	}	
 
 	public JFrame getArea() {
-		return area;
+		return frameEmail;
 	}
 	
 	public JTextField getTf() {

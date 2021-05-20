@@ -77,9 +77,7 @@ public class ControlePrivateKey {
 					ic.getScreen().dispose();
 					ControleMenu cm = new ControleMenu();
 					cm.callMenu();
-				}
-
-				
+				}				
 			}
 		});
 		

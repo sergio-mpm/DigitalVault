@@ -14,26 +14,18 @@ import models.BDConnect;
 
 public class InterfacePrivateKey {
 
-	private JFrame menu;
+	private JFrame framePrivateKey;
 	private JButton buttonAbrir;
 	private JLabel labelSenha;
 	private JPasswordField textFieldSenha;
 	private JButton buttonConfirmar;	
-	
-	public JTextField getSenhaSecreta() {
-		return textFieldSenha;
-	}
-
-	public void setSenhaSecreta(JPasswordField senhaSecreta) {
-		this.textFieldSenha = senhaSecreta;
-	}
 
 	public InterfacePrivateKey() {
 		BDConnect.Log(4001, LoginNameAuthenticator.getInstance().Get_LoginName());
 	
 		createMenu();
 		
-		menu.addWindowListener(new WindowAdapter() {
+		framePrivateKey.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
             	BDConnect.Log(1002);
@@ -45,10 +37,10 @@ public class InterfacePrivateKey {
 	
 	private void createMenu() {
 		
-		menu = new JFrame("Autenticação de Chave Privada");
-		menu.setSize(400,200);
-		menu.setLayout(null);
-		menu.setLocationRelativeTo(null);
+		framePrivateKey = new JFrame("Autenticação de Chave Privada");
+		framePrivateKey.setSize(400,200);
+		framePrivateKey.setLayout(null);
+		framePrivateKey.setLocationRelativeTo(null);
 
 		buttonAbrir = new JButton();
 		buttonAbrir.setBounds(20, 20, 350, 30);
@@ -66,14 +58,22 @@ public class InterfacePrivateKey {
 		buttonConfirmar.setFont(new Font("Dialog", Font.BOLD, 18));
 		buttonConfirmar.setBounds(20, 105, 350, 30);		
 		
-		menu.add(buttonAbrir);
-		menu.add(labelSenha);
-		menu.add(textFieldSenha);
-		menu.add(buttonConfirmar);		
+		framePrivateKey.add(buttonAbrir);
+		framePrivateKey.add(labelSenha);
+		framePrivateKey.add(textFieldSenha);
+		framePrivateKey.add(buttonConfirmar);		
+	}
+	
+	public JTextField getSenhaSecreta() {
+		return textFieldSenha;
+	}
+
+	public void setSenhaSecreta(JPasswordField senhaSecreta) {
+		this.textFieldSenha = senhaSecreta;
 	}
 	
 	public JFrame getScreen() {
-		return menu;
+		return framePrivateKey;
 	}
 
 	public JButton getSend() {
@@ -81,7 +81,7 @@ public class InterfacePrivateKey {
 	}
 	
 	public void setVisible() {
-		menu.setVisible(true);
+		framePrivateKey.setVisible(true);
 	}
 
 	public JButton getBtAbrir() {

@@ -18,7 +18,7 @@ create table registros(
 );
 
 create table grupos(
-	GID int not null auto_increment,
+	GID int not null,
     nome varchar(100),
     
     primary key grupos_PK(GID)

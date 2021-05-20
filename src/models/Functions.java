@@ -50,7 +50,7 @@ public class Functions {
 		
 		return trio_fonemas;
 	}
-	/*
+	
 	public static ArrayList<ParDigitos> Gerar_Set_Pares()
 	{
 		ArrayList<ParDigitos> par_digitos = new ArrayList<ParDigitos>();
@@ -82,8 +82,8 @@ public class Functions {
 		
 		return par_digitos;
 	}
-	*/
-	public static boolean Validar_Padrao_Senha(String senha) {
+	
+	public static boolean Validate_Pattern_Password(String senha) {
 		char[] senha_array = senha.toCharArray();
 		
 		if(senha_array.length < 8 || senha_array.length > 12) 
@@ -111,7 +111,7 @@ public class Functions {
 		
 		return true;
 	}
-	/*
+	
 	public static boolean Validar_Padrao_Senha(int senha)
 	{
 		char[] senha_array = Integer.toString(senha).toCharArray();
@@ -151,7 +151,7 @@ public class Functions {
 		
 		return true;
 	}
-	*/
+	
 	public static String Get_Random_SALT()
 	{
 		String alfabeto = "abcdefghijklmnopqrstuvywxzABCDEFGHIJKLMNOPQRSTUVYWXZ0123456789";

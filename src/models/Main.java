@@ -10,15 +10,15 @@ import javax.swing.JOptionPane;
 public class Main {
 	
 	public static void main(String[] args) {
-		ArrayList<ParDigitos> par_digitos = new ArrayList<ParDigitos>();
+		ArrayList<TrioFonemas> trio_fonemas = new ArrayList<TrioFonemas>();
 		BDConnect.Estabelecer_Conexao();		
 
-		par_digitos.add(new ParDigitos(3, 1));
-		par_digitos.add(new ParDigitos(9, 4));
-		par_digitos.add(new ParDigitos(1, 6));
-		par_digitos.add(new ParDigitos(6, 8));
-		par_digitos.add(new ParDigitos(9, 8));
-		par_digitos.add(new ParDigitos(4, 8));
+		trio_fonemas.add(new TrioFonemas("DA", "BE", "CO"));
+		trio_fonemas.add(new TrioFonemas("GA", "HO", "FE"));
+		trio_fonemas.add(new TrioFonemas("BO", "DE", "FA"));
+		trio_fonemas.add(new TrioFonemas("HA", "CE", "GO"));
+		trio_fonemas.add(new TrioFonemas("GE", "BA", "DO"));
+		trio_fonemas.add(new TrioFonemas("HE", "FO", "CA"));
 
 		String path = "D:\\Trabalho\\Eclipse\\JavaWorkspace\\DIgitalVault\\Pacote-T3\\Keys\\admin-x509.crt";
 		
@@ -26,7 +26,7 @@ public class Main {
 		
 		LoginNameAuthenticator.getInstance().Iniciar_Validacao();
 		LoginNameAuthenticator.getInstance().Validar_Email("user01@inf1416.puc-rio.br");
-		LoginNameAuthenticator.getInstance().Validar_Senha(par_digitos);
+		LoginNameAuthenticator.getInstance().Validar_Senha(trio_fonemas);
 		LoginNameAuthenticator.getInstance().Validar_ChavePrivada(path, "user01");
 		
 		Usuario user = Usuario.getInstance();

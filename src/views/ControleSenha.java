@@ -15,11 +15,13 @@ import models.TrioFonemas;
 
 public class ControleSenha {
 	
-	private ArrayList<ParDigitos> atualValues;
+	//private ArrayList<ParDigitos> atualValues;
+	private ArrayList<TrioFonemas> atualValues;
 	
 	public void callInterfacePassword() {
 		InterfaceSenha ip = new InterfaceSenha(5);
-		atualValues = new ArrayList<ParDigitos>();
+		//atualValues = new ArrayList<ParDigitos>();
+		atualValues = new ArrayList<TrioFonemas>();
 		addValueAndActionToButton(ip);
 		AddActButtonSend(ip);
 		addActResetButton(ip);
@@ -36,6 +38,38 @@ public class ControleSenha {
 	}
 	
 	
+	 public void addValuetoButton(String fonema1, String fonema2, String fonema3, JButton button) {
+	 	button.setText(fonema1 + "-" + fonema2 + "-" + fonema3);
+	 	button.setPreferredSize(new Dimension(100,100));
+	 }
+	 
+	 public void addValueAndActionToButton(InterfaceSenha ip) {
+	 	String n1, n2, n3;
+	 	ArrayList<TrioFonemas> fonemas = Functions.Gerar_Set_Trios();
+	 	for(int i = 0; i < ip.getButtons().size() ; i++) {
+	 		n1 = fonemas.get(i).fonema1;
+	 		n2 = fonemas.get(i).fonema2;
+	 		n3 = fonemas.get(i).fonema3;
+	 		JButton button = ip.getButtons().get(i);
+	 		addValuetoButton(n1, n2, n3, button);
+	 		if(button.getActionListeners().length == 0) {
+	 			addActButtonNumbers(button, ip);
+	 		}
+	 	}
+	 }
+	 
+	 public void getValueBottom(JButton button) {
+	 	String text = button.getText().replace("-", "");
+	 	String f1 = text.substring(0,1);
+	 	String f2 = text.substring(2,3);
+	 	String f3 = text.substring(4,5);
+	 	TrioFonemas trio = new TrioFonemas(f1, f2, f3);
+	 	atualValues.add(trio);
+	 }
+	  
+	  
+	
+	/*
 	public void addValueAndActionToButton(InterfaceSenha ip) {
 		int n1 , n2 = 0;
 		ArrayList<ParDigitos> digitos = Functions.Gerar_Set_Pares();
@@ -49,16 +83,17 @@ public class ControleSenha {
 			}
 		}		
 	}
-	
+	*/
 	public void addActResetButton(InterfaceSenha i) { 
 		i.getReset().addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 	        {	     
-				atualValues = new ArrayList<ParDigitos>();
+				//atualValues = new ArrayList<ParDigitos>();
+				atualValues = new ArrayList<TrioFonemas>();
 	        }
 			});
 	}
-	
+	/*
 	public void getValueBottom(JButton button) {
 		String text = button.getText().replace("|", "");
 		int n1 = Character.getNumericValue(text.charAt(0));
@@ -66,7 +101,7 @@ public class ControleSenha {
 		ParDigitos par = new ParDigitos(n1, n2);
 		atualValues.add(par);
 		
-	}
+	}*/
 	
 	public void addActButtonNumbers(JButton button , InterfaceSenha i) {
 
@@ -88,7 +123,8 @@ public class ControleSenha {
 				
 				if ( validarSenha == -1)
 				{
-					atualValues = new ArrayList<ParDigitos>();
+					//atualValues = new ArrayList<ParDigitos>();
+					atualValues = new ArrayList<TrioFonemas>();
 				}
 				if ( validarSenha == -2) {
 					BDConnect.Log(3002, LoginNameAuthenticator.getInstance().Get_LoginName());

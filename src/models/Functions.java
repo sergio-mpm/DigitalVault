@@ -60,7 +60,7 @@ public class Functions {
 			return false;
 		}
 		
-		int substring_last_index = 3;
+		int substring_last_index = 4;
 		int substring_first_index = 2;
 		String first_substring;
 		String second_substring;

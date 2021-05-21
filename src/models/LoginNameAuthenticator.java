@@ -732,7 +732,6 @@ public class LoginNameAuthenticator {
     private boolean Testa_Senhas(ArrayList<TrioFonemas> trio_fonemas, String SALT, String senha_hash)
     {
     	String senha = null;
-    	//String[][] FonemasDigitados = {{"", "", ""}, {"", "", ""}, {"", "", ""}, {"", "", ""}, {"", "", ""}, {"", "", ""}};
     	String[][] FonemasDigitados = new String[trio_fonemas.size()][3];
     	int tamanhoString = trio_fonemas.size();
     	

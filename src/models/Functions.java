@@ -54,7 +54,7 @@ public class Functions {
 	public static boolean Validar_Padrao_Senha(String senha) {
 		char[] senha_array = senha.toCharArray();
 		
-		if(senha_array.length < 6 || senha_array.length > 12) 
+		if(senha_array.length < 8 || senha_array.length > 12) 
 		{
 			System.out.println("Tamanho da senha invalido");
 			return false;

@@ -732,30 +732,91 @@ public class LoginNameAuthenticator {
     private boolean Testa_Senhas(ArrayList<TrioFonemas> trio_fonemas, String SALT, String senha_hash)
     {
     	String senha = null;
-    	String[][] FonemasDigitados = {{trio_fonemas.get(0).fonema1, trio_fonemas.get(0).fonema2, trio_fonemas.get(0).fonema3,},
-    								   {trio_fonemas.get(1).fonema1, trio_fonemas.get(1).fonema2, trio_fonemas.get(1).fonema3,},
-    								   {trio_fonemas.get(2).fonema1, trio_fonemas.get(2).fonema2, trio_fonemas.get(2).fonema3}};
+    	//String[][] FonemasDigitados = {{"", "", ""}, {"", "", ""}, {"", "", ""}, {"", "", ""}, {"", "", ""}, {"", "", ""}};
+    	String[][] FonemasDigitados = new String[trio_fonemas.size()][3];
+    	int tamanhoString = trio_fonemas.size();
     	
-    	for(int h = 0; h < trio_fonemas.size(); h++)
+    	for(int h = 0; h < tamanhoString; h++)
     	{
     		FonemasDigitados[h][0] = trio_fonemas.get(h).fonema1;
     		FonemasDigitados[h][1] = trio_fonemas.get(h).fonema2;
     		FonemasDigitados[h][2] = trio_fonemas.get(h).fonema3;
     	}
     	
-    	for(int i = 0; i < 3; i++)
+    	switch(tamanhoString)
     	{
-    		for(int j = 0; j < 3; j++)
-    		{
-    			for(int k = 0; k < 3; k++)
+    		case 4:
+    			for(int i = 0; i < 3; i++)
     			{
-    				senha = FonemasDigitados[0][i];
-    				senha = senha + FonemasDigitados[1][j];
-    				senha = senha + FonemasDigitados[2][k];
-    				if(senha_hash.equals(Cryptografar_Senha(senha, SALT)))
-    					return true;
+    				for(int j = 0; j < 3; j++)
+    				{
+    					for(int k = 0; k < 3; k++)
+    					{
+    						for(int l = 0; l < 3; l++)
+    						{
+    							senha = FonemasDigitados[0][i];
+    							senha = senha + FonemasDigitados[1][j];
+    							senha = senha + FonemasDigitados[2][k];
+    							senha = senha + FonemasDigitados[3][l];
+    							if(senha_hash.equals(Cryptografar_Senha(senha, SALT)))
+    								return true;
+    						}
+    					}
+    				}
     			}
-    		}
+    			break;
+    		case 5:
+    			for(int i = 0; i < 3; i++)
+    			{
+    				for(int j = 0; j < 3; j++)
+    				{
+    					for(int k = 0; k < 3; k++)
+    					{
+    						for(int l = 0; l < 3; l++)
+    						{
+    							for(int m = 0; m < 3; m++)
+    							{
+    								senha = FonemasDigitados[0][i];
+    								senha = senha + FonemasDigitados[1][j];
+    								senha = senha + FonemasDigitados[2][k];
+    								senha = senha + FonemasDigitados[3][l];
+    								senha = senha + FonemasDigitados[4][m];
+    								if(senha_hash.equals(Cryptografar_Senha(senha, SALT)))
+    									return true;
+    							}
+    						}
+    					}
+    				}
+    			}
+    			break;
+    		case 6:
+    			for(int i = 0; i < 3; i++)
+    			{
+    				for(int j = 0; j < 3; j++)
+    				{
+    					for(int k = 0; k < 3; k++)
+    					{
+    						for(int l = 0; l < 3; l++)
+    						{
+    							for(int m = 0; m < 3; m++)
+    							{
+    								for(int n = 0; n < 3; n++)
+    								{
+    									senha = FonemasDigitados[0][i];
+    									senha = senha + FonemasDigitados[1][j];
+    									senha = senha + FonemasDigitados[2][k];
+    									senha = senha + FonemasDigitados[3][l];
+    									senha = senha + FonemasDigitados[4][m];
+    									senha = senha + FonemasDigitados[5][n];
+    									if(senha_hash.equals(Cryptografar_Senha(senha, SALT)))
+    										return true;
+    								}
+    							}
+    						}
+    					}
+    				}
+    			}
+    			break;
     	}
     	return false;
     }
